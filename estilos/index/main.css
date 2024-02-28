@@ -1,0 +1,51 @@
+main{
+   width:70%;
+   display: inline-block;
+   margin-top:35vh;
+}
+
+main .news_container h2{
+    border-radius:1em ;
+    font-size: 1em;
+    margin-top: 0.1em;
+    color:var(--guardsman-red-50);
+    background-color: var(--guardsman-red-400);
+    padding:1em;
+}
+
+main .news{
+    padding-top:1em;
+    display: grid;
+    grid-template-columns:repeat(4, 1fr);
+    grid-auto-rows:50vh;
+    gap: 1em;
+}
+
+main .news_container .news .product{
+    background-color: aliceblue;
+    border-radius: 1em;
+}
+
+main .news_container .news .product .img_product{
+    height:80%;
+}
+
+main .news_container .news .product .img_product img{
+    border-radius: 1em;
+    display: block;
+    width:100%;
+    height:100%;
+    object-fit: cover;
+}
+
+main .news_container .news .product .info_product{
+    text-align: center;
+    font-size: 0.8em;
+    height:20%;
+}
+
+main .news_container .news .product .info_product span{
+    padding:0.5em;
+    display:block;
+}
+
