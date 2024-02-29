@@ -1,36 +1,33 @@
 main{
-   width:70%;
-   display: inline-block;
-   margin-top:35vh;
+   display: flex;
+   flex-wrap: wrap;
 }
 
-main .news_container h2{
-    border-radius:1em ;
-    font-size: 1em;
-    margin-top: 0.1em;
-    color:var(--guardsman-red-50);
-    background-color: var(--guardsman-red-400);
-    padding:1em;
-}
-
-main .news{
-    padding-top:1em;
+main .products_container{
+    flex-basis: 75%;
+    margin-left: auto;
+    margin-right: 1em;
     display: grid;
     grid-template-columns:repeat(4, 1fr);
     grid-auto-rows:50vh;
     gap: 1em;
 }
 
-main .news_container .news .product{
+.product{
     background-color: aliceblue;
     border-radius: 1em;
 }
 
-main .news_container .news .product .img_product{
+.product a{
+    text-decoration: none;
+    color:black;
+}
+
+.product .img_product{
     height:80%;
 }
 
-main .news_container .news .product .img_product img{
+.product .img_product img{
     border-radius: 1em;
     display: block;
     width:100%;
@@ -38,14 +35,38 @@ main .news_container .news .product .img_product img{
     object-fit: cover;
 }
 
-main .news_container .news .product .info_product{
+.product .info_product{
     text-align: center;
     font-size: 0.8em;
     height:20%;
 }
 
-main .news_container .news .product .info_product span{
+.product .info_product span{
     padding:0.5em;
     display:block;
 }
 
+@media only  screen and (max-width:1024px){
+
+    main aside{
+        flex-basis: 100%;
+    }
+
+    main aside form br{
+        display:none;
+    }
+
+    main aside form label{
+        padding:0.5em;
+    }
+
+    main .products_container{
+        flex-basis: 100%;
+        margin-left: auto;
+        margin-right: 1em;
+        display: grid;
+        grid-template-columns:repeat(2, 1fr);
+        grid-auto-rows:50vh;
+        gap: 1em;
+    }
+}

@@ -17,10 +17,9 @@
 }
 
 body{
-    background-color: var(--guardsman-red-800);
+    background-color: var(--guardsman-red-50);
 }
 
 .content{
     margin:auto;
-    width:90%;
 }

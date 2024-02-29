@@ -1,9 +1,13 @@
 header{
     background-color: var(--guardsman-red-800);
-    position:fixed;
+    position:sticky;
     top:0;
-    width:90%;
+    width:100%;
     z-index: 1000;
+}
+
+header .toogle{
+    display: none;
 }
 
 header .logoheader{
@@ -20,11 +24,10 @@ header .logoheader img{
 }
 
 header .tools_container{
-    width:5%;
     position: absolute;
-    top:2em;
-    right:2em;
-    width:70px;
+    top:1em;
+    right:1em;
+    width:4em;
 }
 
 header .tools{
@@ -47,11 +50,17 @@ header nav{
 }
 
 header nav .search{
+    margin-left:1em;
     width:20%;
 }
 
+header nav .search form{
+    display:block;
+    margin:auto;
+}
+
 header nav .options{
-    min-width:750px;
+    transition: left ease 1s;
     width:70%;
 }
 
@@ -72,6 +81,7 @@ header nav .search form input[type="submit"]{
     margin-left:0.2em;
     background-color:var(--guardsman-red-50);
     color:var(--guardsman-red-700);
+    cursor:pointer;
 }
 header nav .search form input[type="text"]{
     padding:0.3em;
@@ -102,6 +112,7 @@ header nav ul li a{
     color:var(--guardsman-red-50);
     border-bottom:none;
     transition:border-bottom 6s ease;
+    text-transform: uppercase;
 }
 
 header nav ul li a img{
@@ -113,3 +124,54 @@ header nav ul li a:hover{
     border-bottom: white solid 0.1em;
 }
 
+@media only  screen and (max-width:1000px){
+    header nav .options{
+        width:100%;
+    }
+}
+
+
+@media only  screen and (max-width:750px){
+
+    header .toogle{
+        display: block;
+        width:30px;
+        position:absolute;
+        top:20px;
+        left:20px;
+        cursor: pointer;
+        z-index: 2000;
+    }
+
+    header .toogle img{
+        display: block;
+        width: 100%;
+    }
+    
+    header nav .search{
+        text-align: center;
+        width:100%;
+        padding:1em;
+    }
+
+    header nav .search form{
+        width:80%;
+        display: inline-block;
+        margin:auto;
+    }
+
+    header nav .options{
+        top:0;
+        left:-50%;
+        background-color: var(--guardsman-red-950);
+        width: 50%;
+        position: fixed;
+        height:100vh;
+    }
+
+    header nav ul{
+       margin-top:2em;
+       align-content: center;
+       flex-direction: column;
+    }
+}

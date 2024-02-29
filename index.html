@@ -9,11 +9,16 @@
     <link rel="stylesheet" href="estilos/index/header.css">
     <link rel="stylesheet" href="estilos/index/main.css">
     <link rel="stylesheet" href="estilos/index/aside.css">
+    <link rel="stylesheet" href="estilos/index/whatsapp.css">
+    <link rel="stylesheet" href="estilos/index/footer.css">
+    <link rel="stylesheet" href="estilos/index/responsive.css">
 </head>
 
 <body>
     <div class="content">
         <header>
+            <div class="toogle" id="toogle"><img src="img/menu.png" alt="menu">
+            </div>
             <div class="logoheader">
                 <img src="img/logoheader.jpg" alt="logoheader">
             </div>
@@ -30,7 +35,7 @@
                         <input type="submit" value="Buscar">
                     </form>
                 </div>
-                <div class="options">
+                <div class="options" id="options">
                     <ul>
                         <li><a href="#">Inicio</a></li>
                         <li><a href="#">Colecciones</a></li>
@@ -40,67 +45,176 @@
                 </div>
             </nav>
         </header>
-        <aside>
-
-        </aside>
         <main>
-            <div class="news_container">
-                <h2>Novedades</h2>
-                <div class="news">
-                    <div class="product">
-                        <div class="img_product">
-                            <img src="img/24510.png" alt="24510">
-                        </div>
-                        <div class="info_product">
-                            <span class="title">24510</span>
-                            <span class="price">$3.990</span>
-                        </div>
-                    </div>
-                    <div class="product">
-                        <div class="img_product">
-                            <img src="img/24511.png" alt="24510">
-                        </div>
-                        <div class="info_product">
-                            <span class="title">24510</span>
-                            <span class="price">$3.990</span>
-                        </div>
-                    </div>
-                    <div class="product">
-                        <div class="img_product">
-                            <img src="img/24514.png" alt="24510">
-                        </div>
-                        <div class="info_product">
-                            <span class="title">24510</span>
-                            <span class="price">$3.990</span>
-                        </div>
-                    </div>
-                    <div class="product">
-                        <div class="img_product">
-                            <img src="img/24510.png" alt="24510">
-                        </div>
-                        <div class="info_product">
-                            <span class="title">24510</span>
-                            <span class="price">$3.990</span>
-                        </div>
-                    </div>
-                    <div class="product">
-                        <div class="img_product">
-                            <img src="img/24510.png" alt="24510">
-                        </div>
-                        <div class="info_product">
-                            <span class="title">24510</span>
-                            <span class="price">$3.990</span>
-                        </div>
-                    </div>
-                    
+            <aside>
+                <div class="filter_container">
+                    <h2>Filtrar por:</h2>
+                    <form action="#" method="post">
+                        <input type="checkbox" id="born" name="talla" value="recién nacidos">
+                        <label for="born">Recien Nacidos</label><br>
 
+                        <input type="checkbox" id="babies" name="talla" value="3-18 meses">
+                        <label for="babies">3-18 meses</label><br>
+
+                        <input type="checkbox" id="kids" name="talla" value="1-4 años">
+                        <label for="kids">1-4 años</label><br>
+
+                        <input type="checkbox" id="teens" name="talla" value="4-16 años">
+                        <label for="teens">4-16 años</label><br>
+
+                        <input type="checkbox" id="accessories" name="talla" value="Accesorios">
+                        <label for="accessories">Accesorios</label><br>
+
+                        <br>
+
+                        <label for="ordenar-por">Ordenar por:</label>
+                        <select id="ordenar-por" name="ordenar-por">
+                            <option value="mas-barato">Más barato</option>
+                            <option value="mas-caro">Más caro</option>
+                            <option value="mas-reciente">Más reciente</option>
+                            <option value="mas-vendidos">Más vendido</option>
+                        </select>
+
+                        <br><br>
+                    </form>
+                </div>
+            </aside>
+            <div class="products_container">
+                    <div class="product">
+                        <a href="#">
+                            <div class="img_product">
+                                <img src="img/24510.png" alt="24510">
+                            </div>
+                            <div class="info_product">
+                                <p>PROMOCIÓN, Enterito bebe algodón c / gorrito</p>
+                                <span class="price">$3.990</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="product">
+                        <a href="#">
+                            <div class="img_product">
+                                <img src="img/24511.png" alt="24510">
+                            </div>
+                            <div class="info_product">
+                                <p>PROMOCIÓN, Enterito bebe algodón c / gorrito</p>
+                                <span class="price">$3.990</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="product">
+                        <a href="#">
+                            <div class="img_product">
+                                <img src="img/24514.png" alt="24510">
+                            </div>
+                            <div class="info_product">
+                                <p>PROMOCIÓN, Enterito bebe algodón c / gorrito</p>
+                                <span class="price">$3.990</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="product">
+                        <a href="#">
+                            <div class="img_product">
+                                <img src="img/24510.png" alt="24510">
+                            </div>
+                            <div class="info_product">
+                                <p>PROMOCIÓN, Enterito bebe algodón c / gorrito</p>
+                                <span class="price">$3.990</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="product">
+                        <a href="#">
+                            <div class="img_product">
+                                <img src="img/24510.png" alt="24510">
+                            </div>
+                            <div class="info_product">
+                                <p>PROMOCIÓN, Enterito bebe algodón c / gorrito</p>
+                                <span class="price">$3.990</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="product">
+                        <a href="#">
+                            <div class="img_product">
+                                <img src="img/24510.png" alt="24510">
+                            </div>
+                            <div class="info_product">
+                                <p>PROMOCIÓN, Enterito bebe algodón c / gorrito</p>
+                                <span class="price">$3.990</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="product">
+                        <a href="#">
+                            <div class="img_product">
+                                <img src="img/24511.png" alt="24510">
+                            </div>
+                            <div class="info_product">
+                                <p>PROMOCIÓN, Enterito bebe algodón c / gorrito</p>
+                                <span class="price">$3.990</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="product">
+                        <a href="#">
+                            <div class="img_product">
+                                <img src="img/24514.png" alt="24510">
+                            </div>
+                            <div class="info_product">
+                                <p>PROMOCIÓN, Enterito bebe algodón c / gorrito</p>
+                                <span class="price">$3.990</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="product">
+                        <a href="#">
+                            <div class="img_product">
+                                <img src="img/24510.png" alt="24510">
+                            </div>
+                            <div class="info_product">
+                                <p class="description">PROMOCIÓN, Enterito bebe algodón c / gorrito. Talles: 0/1/2/3</p>
+                                <span class="price">$3.990</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="product">
+                        <a href="#">
+                            <div class="img_product">
+                                <img src="img/24510.png" alt="24510">
+                            </div>
+                            <div class="info_product">
+                                <p>PROMOCIÓN, Enterito bebe algodón c / gorrito</p>
+                                <span class="price">$3.990</span>
+                            </div>
+                        </a>
+                    </div>
+            </div>
+            
+        </main>
+        <div class="whatsapp">
+            <a href="#"><img src="img/whatsapp.png" alt="whatsapp"></a>
+        </div>
+        <footer>
+            <h3>Solcito web 2023 - Todos los derechos reservados</h3>
+            <div class="media_container">
+                <h4>Seguinos en nuestras redes sociales</h4>
+                <div class="media">
+                    <a href="#"><img src="img/facebook.png" alt="facebook"></a>
+                    <a href="#"><img src="img/whatsapp.png" alt="whatsapp"></a>
+                    <a href="#"><img src="img/instagram.png" alt="instagram"></a>
+                </div>
+                <div class="contact">
+                    Contactanos:
+                    <a href="#" class="mail">info@solcitoweb.com.ar</a>
+                    <b>+54 9 11 3026-9534</b>
+                    <b>Tucumán 2100, CABA </b>
                 </div>
             </div>
-            <div class="trend">
-
-            </div>
-        </main>
+        </footer>
     </div>
+    <script src="scripts/index/navToogle.js"></script>
 </body>
 
 </html>
