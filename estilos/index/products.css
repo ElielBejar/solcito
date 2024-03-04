@@ -42,7 +42,7 @@
 }
 
 @media only  screen and (max-width:1024px){
-    main .products_container{
+    .products_container{
         flex-basis: 100%;
         margin-left: auto;
         margin-right: 1em;
