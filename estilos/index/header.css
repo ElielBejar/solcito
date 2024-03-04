@@ -1,4 +1,5 @@
 header{
+    padding-bottom: 1em;
     background-color: var(--guardsman-red-800);
     position:sticky;
     top:0;
@@ -12,8 +13,7 @@ header .toogle{
 
 header .logoheader{
     display: inline-block;
-    height:10vh;
-    margin:1em auto;
+    height:5em;
     width:100%;
 }
 
@@ -54,11 +54,6 @@ header nav .search{
     width:20%;
 }
 
-header nav .search form{
-    display:block;
-    margin:auto;
-}
-
 header nav .options{
     transition: left ease 1s;
     width:70%;
@@ -84,7 +79,7 @@ header nav .search form input[type="submit"]{
     cursor:pointer;
 }
 header nav .search form input[type="text"]{
-    padding:0.3em;
+    padding: 0.3em;
     border-radius: 0.2em;
     outline: none;
     border: none;
@@ -106,12 +101,11 @@ header nav ul li{
 }
 
 header nav ul li a{
+    border-bottom: var(--guardsman-red-800) solid 0.1em;
     padding:1em 0;
     display:block;
     text-decoration: none;
     color:var(--guardsman-red-50);
-    border-bottom:none;
-    transition:border-bottom 6s ease;
     text-transform: uppercase;
 }
 

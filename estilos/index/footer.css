@@ -42,8 +42,6 @@ footer .media_container .contact a{
 }
 
 @media only screen and (max-width:750px){
-    .media, .contact{
-    }
 
     footer .media_container .media a{
         flex-basis: 10%;
