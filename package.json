@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "ecommerce solcito",
   "main": "server/app.mjs",
-  "type":"module",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -23,5 +23,10 @@
   "bugs": {
     "url": "https://github.com/ElielBejar/solcito/issues"
   },
-  "homepage": "https://github.com/ElielBejar/solcito#readme"
+  "homepage": "https://github.com/ElielBejar/solcito#readme",
+  "dependencies": {
+    "express": "4.18.3",
+    "mysql2": "^3.9.2",
+    "zod": "3.22.4"
+  }
 }
