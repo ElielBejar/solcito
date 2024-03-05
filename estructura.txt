@@ -3,11 +3,10 @@ bases de datos:
 
 -colecciones(una por una, incluyendo coleccion de mas vendidos, novedades y todos los productos)
 -articulos
--usuarios
 -pedidos
 -stock
 
 
 colecciones: id coleccion, nombre, foto portada.
 articulos: id articulo, codigo articulo, id coleccion asociada, foto articulo, precio, descripcion, nombre, color, id estampa, talles
-stock: id articulo, codigo articulo, color, id estampa, 
+stock: id articulo, codigo articulo, color, id estampa, disponibles. 
