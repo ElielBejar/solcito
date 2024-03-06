@@ -5,27 +5,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Solcito - Ropa y accesorios</title>
-    <link rel="stylesheet" href="estilos/index/index.css">
-    <link rel="stylesheet" href="estilos/index/header.css">
-    <link rel="stylesheet" href="estilos/index/main.css">
-    <link rel="stylesheet" href="estilos/index/products.css">
-    <link rel="stylesheet" href="estilos/index/aside.css">
-    <link rel="stylesheet" href="estilos/index/whatsapp.css">
-    <link rel="stylesheet" href="estilos/index/footer.css">
+    <link rel="stylesheet" href="view/estilos/index/index.css">
+    <link rel="stylesheet" href="view/estilos/index/header.css">
+    <link rel="stylesheet" href="view/estilos/index/main.css">
+    <link rel="stylesheet" href="view/estilos/index/products.css">
+    <link rel="stylesheet" href="view/estilos/index/aside.css">
+    <link rel="stylesheet" href="view/estilos/index/whatsapp.css">
+    <link rel="stylesheet" href="view/estilos/index/footer.css">
 </head>
 <body>
     <div class="content">
         <header>
             <div class="toogle" id="toogle">
-                <img src="img/menu.png" alt="menu">
+                <img src="view/img/menu.png" alt="menu">
             </div>
             <div class="logoheader">
-                <img src="img/logoheader.jpg" alt="logoheader">
+                <img src="view/img/logoheader.jpg" alt="logoheader">
             </div>
             <div class="tools_container">
                 <div class="tools">
-                    <a href="#1"><img src="img/usuario.png" alt="perfil"></a>
-                    <a href="#2"><img src="img/carrito.png" alt="carrito"></a>
+                    <a href="#1"><img src="view/img/usuario.png" alt="perfil"></a>
+                    <a href="#2"><img src="view/img/carrito.png" alt="carrito"></a>
                 </div>
             </div>
             <nav>
@@ -38,9 +38,9 @@
                 <div class="options" id="options">
                     <ul>
                         <li><a href="#">Inicio</a></li>
-                        <li><a href="nav/colections.html">Colecciones</a></li>
-                        <li><a href="nav/contact.html">Contacto</a></li>
-                        <li><a href="nav/about.html">Sobre la empresa</a></li>
+                        <li><a href="view/nav/colections.html">Colecciones</a></li>
+                        <li><a href="view/nav/contact.html">Contacto</a></li>
+                        <li><a href="view/nav/about.html">Sobre la empresa</a></li>
                     </ul>
                 </div>
             </nav>
@@ -49,23 +49,23 @@
             <aside>
                 <div class="filter_container">
                     <h2>Filtrar por:</h2>
-                    <form action="#" method="post">
-                        <input type="checkbox" id="born" name="talla" value="recién nacidos">
+                    <form>
+                        <input type="checkbox" id="born" name="3" value="recién nacidos">
                         <label for="born">Recien Nacidos</label><br>
 
-                        <input type="checkbox" id="babies" name="talla" value="3-18 meses">
+                        <input type="checkbox" id="babies" name="318" value="3-18 meses">
                         <label for="babies">3-18 meses</label><br>
 
-                        <input type="checkbox" id="boys" name="talla" value="1-4 años Varón">
+                        <input type="checkbox" id="boys" name="140" value="1-4 años Varón">
                         <label for="boys">1-4 años / Varón</label><br>
 
-                        <input type="checkbox" id="girls" name="talla" value="1-4 años Nena ">
+                        <input type="checkbox" id="girls" name="141" value="1-4 años Nena ">
                         <label for="girls">1-4 años / Nena</label><br>
 
-                        <input type="checkbox" id="bteens" name="talla" value="4-16 años Varón">
+                        <input type="checkbox" id="bteens" name="4160" value="4-16 años Varón">
                         <label for="bteens">4-16 años / Varón</label><br>
 
-                        <input type="checkbox" id="gteens" name="talla" value="4-16 años Nena">
+                        <input type="checkbox" id="gteens" name="4161" value="4-16 años Nena">
                         <label for="gteens">4-16 años / Nena</label><br>
 
                         <input type="checkbox" id="accessories" name="talla" value="Accesorios">
@@ -73,23 +73,23 @@
 
                         <br>
 
-                        <label for="ordenar-por">Ordenar por:</label>
-                        <select id="ordenar-por" name="ordenar-por">
-                            <option value="mas-barato">Más barato</option>
-                            <option value="mas-caro">Más caro</option>
-                            <option value="mas-reciente">Más reciente</option>
-                            <option value="mas-vendidos">Más vendido</option>
+                        <label for="order_by">Ordenar por:</label>
+                        <select id="order_by" name="ordenar-por">
+                            <option value="cheap">Más barato</option>
+                            <option value="expensive">Más caro</option>
+                            <option value="recently">Más reciente</option>
+                            <option value="trend">Más vendido</option>
                         </select>
 
                         <br><br>
                     </form>
                 </div>
             </aside>
-            <div class="products_container">
-                    <div class="product">
+            <div class="products_container" id="products_container">
+                   <!-- <div class="product">
                         <a href="#">
                             <div class="img_product">
-                                <img src="img/24510.png" alt="24510">
+                                <img src="view/img/24510.png" alt="24510">
                             </div>
                             <div class="info_product">
                                 <p>PROMOCIÓN, Enterito bebe algodón c / gorrito</p>
@@ -100,7 +100,7 @@
                     <div class="product">
                         <a href="#">
                             <div class="img_product">
-                                <img src="img/24511.png" alt="24510">
+                                <img src="view/img/24511.png" alt="24510">
                             </div>
                             <div class="info_product">
                                 <p>PROMOCIÓN, Enterito bebe algodón c / gorrito</p>
@@ -111,7 +111,7 @@
                     <div class="product">
                         <a href="#">
                             <div class="img_product">
-                                <img src="img/24514.png" alt="24510">
+                                <img src="view/img/24514.png" alt="24510">
                             </div>
                             <div class="info_product">
                                 <p>PROMOCIÓN, Enterito bebe algodón c / gorrito</p>
@@ -122,7 +122,7 @@
                     <div class="product">
                         <a href="#">
                             <div class="img_product">
-                                <img src="img/24510.png" alt="24510">
+                                <img src="view/img/24510.png" alt="24510">
                             </div>
                             <div class="info_product">
                                 <p>PROMOCIÓN, Enterito bebe algodón c / gorrito</p>
@@ -133,7 +133,7 @@
                     <div class="product">
                         <a href="#">
                             <div class="img_product">
-                                <img src="img/24510.png" alt="24510">
+                                <img src="view/img/24510.png" alt="24510">
                             </div>
                             <div class="info_product">
                                 <p>PROMOCIÓN, Enterito bebe algodón c / gorrito</p>
@@ -144,7 +144,7 @@
                     <div class="product">
                         <a href="#">
                             <div class="img_product">
-                                <img src="img/24510.png" alt="24510">
+                                <img src="view/img/24510.png" alt="24510">
                             </div>
                             <div class="info_product">
                                 <p>PROMOCIÓN, Enterito bebe algodón c / gorrito</p>
@@ -155,7 +155,7 @@
                     <div class="product">
                         <a href="#">
                             <div class="img_product">
-                                <img src="img/24511.png" alt="24510">
+                                <img src="view/img/24511.png" alt="24510">
                             </div>
                             <div class="info_product">
                                 <p>PROMOCIÓN, Enterito bebe algodón c / gorrito</p>
@@ -166,7 +166,7 @@
                     <div class="product">
                         <a href="#">
                             <div class="img_product">
-                                <img src="img/24514.png" alt="24510">
+                                <img src="view/img/24514.png" alt="24510">
                             </div>
                             <div class="info_product">
                                 <p>PROMOCIÓN, Enterito bebe algodón c / gorrito</p>
@@ -177,7 +177,7 @@
                     <div class="product">
                         <a href="#">
                             <div class="img_product">
-                                <img src="img/24510.png" alt="24510">
+                                <img src="view/img/24510.png" alt="24510">
                             </div>
                             <div class="info_product">
                                 <p class="description">PROMOCIÓN, Enterito bebe algodón c / gorrito. Talles: 0/1/2/3</p>
@@ -188,7 +188,7 @@
                     <div class="product">
                         <a href="#">
                             <div class="img_product">
-                                <img src="img/24510.png" alt="24510">
+                                <img src="view/img/24510.png" alt="24510">
                             </div>
                             <div class="info_product">
                                 <p>PROMOCIÓN, Enterito bebe algodón c / gorrito</p>
@@ -196,20 +196,21 @@
                             </div>
                         </a>
                     </div>
+                    -->
             </div>
             
         </main>
         <div class="whatsapp">
-            <a href="#"><img src="img/whatsapp.png" alt="whatsapp"></a>
+            <a href="#"><img src="view/img/whatsapp.png" alt="whatsapp"></a>
         </div>
         <footer>
             <h3>Solcito web 2023 - Todos los derechos reservados</h3>
             <div class="media_container">
                 <h4>Seguinos en nuestras redes sociales</h4>
                 <div class="media">
-                    <a href="#"><img src="img/facebook.png" alt="facebook"></a>
-                    <a href="#"><img src="img/whatsapp.png" alt="whatsapp"></a>
-                    <a href="#"><img src="img/instagram.png" alt="instagram"></a>
+                    <a href="#"><img src="view/img/facebook.png" alt="facebook"></a>
+                    <a href="#"><img src="view/img/whatsapp.png" alt="whatsapp"></a>
+                    <a href="#"><img src="view/img/instagram.png" alt="instagram"></a>
                 </div>
                 <div class="contact">
                     Contactanos:
@@ -220,7 +221,9 @@
             </div>
         </footer>
     </div>
-    <script src="scripts/index/navToogle.js"></script>
+    <script src="./view/scripts/index/navToogle.js"></script>
+    <script src="./view/scripts/index/showProducts.js"></script>
+    <script src="./view/scripts/index/filter.js"></script>
 </body>
 
 </html>

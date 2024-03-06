@@ -8,5 +8,5 @@ bases de datos:
 
 
 colecciones: id coleccion, nombre, foto portada.
-articulos: id articulo, codigo articulo, id coleccion asociada, foto articulo, precio, descripcion, nombre, color, id estampa, talles
-stock: id articulo, codigo articulo, color, id estampa, disponibles. 
+articulos: id articulo, codigo articulo, codigo colección asoc, foto articulo, precio, nombre, estampa
+stock: id articulo_stock, codigo articulo, estampa, talle, nro_disponibles. 
