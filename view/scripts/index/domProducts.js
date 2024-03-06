@@ -1,7 +1,16 @@
 const products_container = document.getElementById("products_container");
 
-function showProducts(data){
-   for(let i = 0; i < data.length; i++){
+// Eliminar todos los nodos hijos
+function removeProducts() {
+   while (products_container.firstChild) {
+      products_container.removeChild(products_container.firstChild);
+   }
+}
+
+
+function showProducts(data) {
+   removeProducts();
+   for (let i = 0; i < data.length; i++) {
       const product = document.createElement("div");
       const link_product = document.createElement("a");
       const img_product = document.createElement("div");
@@ -19,8 +28,8 @@ function showProducts(data){
       name.textContent = `${data[i].name}`;
       price.classList.add("price");
       price.textContent = `$${data[i].price}`;
-      
-      
+
+
 
       products_container.appendChild(product);
       product.appendChild(link_product);
