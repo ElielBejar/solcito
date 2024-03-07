@@ -5,8 +5,22 @@ CREATE TABLE articulos (
     colection_code INT NOT NULL,
     img TEXT,
     price DECIMAL NOT NULL,
-    group_code INT NOT NULL
+    group_code INT NOT NULL,
+    date_created TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+CREATE TABLE colecciones(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    colection_code INT NOT NULL,
+    name VARCHAR(255) NOT NULL,
+    img TEXT,
+    date_created TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+/*
+primeros dos digitos: año
+y los siguientes digitos es por las edades(group_code)
+*/
 
 /*group_code:
 3: recien nacidos

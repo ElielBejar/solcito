@@ -1,35 +1,36 @@
-import mysql from "mysql2/promise";
-const config = {
-    host:"localhost",
-    port:3306,
-    user:"root",
-    password:"_45748541",
-    database:"solcito"
+import {connection} from "./connection.js";
+function sqlOrder(order){
+    let sql = "";
+    switch(order){
+        case "cheap":
+            sql = " ORDER BY price ASC";
+            break;
+        case "expensive": 
+            sql = " ORDER BY price DESC";
+            break;
+        case "recently":
+            sql = " ORDER BY date_created DESC";
+            break;
+        case "trend": 
+            sql = " ORDER BY price ASC";
+    }
+    return sql;
 }
-
-const connection = await mysql.createConnection(config);
 
 export class ProductsModule {
     
     static async getByOrder(order) {
-        console.log(order);
-        switch(order){
-            case "cheap":
-                const [info] = await connection.query(
-                    "SELECT * FROM articulos ORDER BY price ASC"
-                );
-                return info;
-                break;
-            case "expensive": 
-                let [info_product] = await connection.query(
-                    "SELECT * FROM articulos ORDER BY price DESC"
-                );
-                return info_product;
-                break;
-        }
+        
+        const [info] = await connection.query("SELECT * FROM articulos"+sqlOrder(order));
+        return info;
     }
 
     static async getByFilter(order, groups){
-
+        const placeholders = groups.map(() => '?').join(',');
+        const sql = `SELECT * FROM articulos WHERE group_code IN (${placeholders})` + sqlOrder(order); 
+        console.log(sql);
+        const [info] = await connection.query(sql, groups);
+        console.log(info);
+        return info;
     }
 }
