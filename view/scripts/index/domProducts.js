@@ -19,7 +19,7 @@ function showProducts(data) {
       const price = document.createElement("span");
 
       product.classList.add("product");
-      link_product.href = "#";
+      link_product.href = `http://127.0.0.1:5501/view/nav/product.html?code=${data[i].code}`;
       img_product.classList.add("img_product");
       img.src = `${data[i].img}`;
       info_product.classList.add("info_product");

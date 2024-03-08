@@ -17,7 +17,7 @@ function sqlOrder(order){
     return sql;
 }
 
-export class ProductsModule {
+export class ProductsModel {
     
     static async getByOrder(order) {
         
@@ -28,9 +28,19 @@ export class ProductsModule {
     static async getByFilter(order, groups){
         const placeholders = groups.map(() => '?').join(',');
         const sql = `SELECT * FROM articulos WHERE group_code IN (${placeholders})` + sqlOrder(order); 
-        console.log(sql);
         const [info] = await connection.query(sql, groups);
+        return info;
+    }
+
+    static async getByCollectionCode(collection_code){
+        const [info] = await connection.query("SELECT * FROM articulos WHERE colection_code = ?", [collection_code]);
         console.log(info);
+        console.log("-----------------------------------------");
+        return info;
+    }
+
+    static async getByCode(code){
+        const [info] = await connection.query("SELECT * FROM articulos WHERE code = ?", [code]);
         return info;
     }
 }
