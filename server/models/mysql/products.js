@@ -21,13 +21,13 @@ export class ProductsModel {
     
     static async getByOrder(order) {
         
-        const [info] = await connection.query("SELECT * FROM articulos"+sqlOrder(order));
+        const [info] = await connection.query("SELECT * FROM articulos WHERE print_code = 1"+sqlOrder(order));
         return info;
     }
 
     static async getByFilter(order, groups){
         const placeholders = groups.map(() => '?').join(',');
-        const sql = `SELECT * FROM articulos WHERE group_code IN (${placeholders})` + sqlOrder(order); 
+        const sql = `SELECT * FROM articulos WHERE print_code = 1 AND group_code IN (${placeholders})` + sqlOrder(order); 
         const [info] = await connection.query(sql, groups);
         return info;
     }
@@ -36,6 +36,12 @@ export class ProductsModel {
         const [info] = await connection.query("SELECT * FROM articulos WHERE colection_code = ?", [collection_code]);
         console.log(info);
         console.log("-----------------------------------------");
+        return info;
+    }
+
+    static async getByPrint(code, print){
+        const [info] = await connection.query("SELECT * FROM articulos WHERE code = ? AND print_code = ?", [code, print]);
+        console.log(info);
         return info;
     }
 

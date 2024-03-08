@@ -21,10 +21,16 @@ export class ProductsController{
        res.json(products);
     }
 
-    static async getByCode(req, res){
-       const {code} = req.params;
-       const products = await ProductsModel.getByCode(code);
+    static async getByPrint(req, res){
+       const {code, print} = req.params;
+       const products = await ProductsModel.getByCode(code, print);
        res.json(products);
+    }
+
+    static async getByCode(req, res){
+      const {code} = req.params;
+      const products = await ProductsModel.getByCode(code);
+      res.json(products);
     }
 
     static async createProduct(req, res){
