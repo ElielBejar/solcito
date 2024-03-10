@@ -34,14 +34,11 @@ export class ProductsModel {
 
     static async getByCollectionCode(collection_code){
         const [info] = await connection.query("SELECT * FROM articulos WHERE colection_code = ?", [collection_code]);
-        console.log(info);
-        console.log("-----------------------------------------");
         return info;
     }
 
     static async getByPrint(code, print){
         const [info] = await connection.query("SELECT * FROM articulos WHERE code = ? AND print_code = ?", [code, print]);
-        console.log(info);
         return info;
     }
 

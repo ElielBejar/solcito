@@ -9,6 +9,7 @@ sendReq(`/products/product/${code}/${print_param}`, {
     headers:{"Content-Type": "application/json"},
 }).then(data => {
     showProduct(data);
+    getProductsFromCollection(data[0].colection_code);
 });
 
 sendReq(`/products/product/${code}`, {
@@ -17,3 +18,13 @@ sendReq(`/products/product/${code}`, {
 }).then(data => {
     showDesigns(data);
 });
+
+function getProductsFromCollection(collection_code){
+
+    sendReq(`/products/collection/${collection_code}`, {
+        method:"GET",
+        headers:{"Content-Type": "application/json"},
+    }).then(data => {
+        showOtherProducts(data);
+    });
+}

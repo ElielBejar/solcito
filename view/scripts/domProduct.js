@@ -24,3 +24,7 @@ function showDesigns(data){
         link_design.appendChild(img_design);
     }
 }
+
+function showOtherProducts(data){
+    showProducts(data);
+}
