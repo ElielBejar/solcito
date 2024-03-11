@@ -18,21 +18,24 @@
             <div class="toogle" id="toogle"><img src="../img/menu.png" alt="menu">
             </div>
             <div class="logoheader">
-                <img src="../img/logoheader.jpg" alt="logoheader">
+                <img src="../img/utils/logoheader.jpg" alt="logoheader">
             </div>
             <div class="tools_container">
                 <div class="tools">
-                    <a href="#1"><img src="../img/usuario.png" alt="perfil"></a>
-                    <a href="#2"><img src="../img/carrito.png" alt="carrito"></a>
+                    <a href="#1"><img src="../img/utils/usuario.png" alt="perfil"></a>
+                    <a href="#2"><img src="../img/utils/carrito.png" alt="carrito"></a>
                 </div>
             </div>
             <nav>
-                <div class="search">
-                    <form action="get">
-                        <input type="text" placeholder="Busca un articulo">
-                        <input type="submit" value="Buscar">
-                    </form>
-                </div>
+                <div class="search_container">
+                    <div class="search">
+                        <input type="text" id="text_search" placeholder="Busca un articulo" autocomplete="off">
+                        <div class="results">
+                            <ul id="list_results">
+                            </ul>
+                        </div>
+                    </div>
+            </div>
                 <div class="options" id="options">
                     <ul>
                         <li><a href="../../index.html">Inicio</a></li>
@@ -114,6 +117,8 @@
         </footer>
     </div>
     <script src="../scripts/index/navToogle.js"></script>
+    <script src="../scripts/index/search.js"></script>
+    <script src="../scripts/fetch.js"></script>
 </body>
 
 </html>

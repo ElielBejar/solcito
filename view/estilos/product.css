@@ -56,6 +56,23 @@
     height:200px;
 }
 
+
+.sizes_product ul{
+    display:flex;
+    flex-wrap: wrap;
+}
+.sizes_product ul li{
+    color:var(--guardsman-red-50);
+    background-color:var(--guardsman-red-950);
+    padding:0.5em;
+    flex-basis: 10%;
+    margin:0 1em;
+    text-align: center;
+    font-size: 0.7em;
+    border:solid 0.2em var(--guardsman-red-200);
+    cursor:pointer;
+}
+
 .general_info{
     background-color: var(--guardsman-red-100);
     color: var(--guardsman-red-950);

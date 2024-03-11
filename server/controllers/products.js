@@ -2,36 +2,33 @@ import { ProductsModel } from "../models/mysql/products.js";
 
 export class ProductsController{
 
-    static async getByOrder(req, res){
-        const {order} = req.params;
-        const products = await ProductsModel.getByOrder(order);
-        res.json(products);
-    }
-
-    static async getByFilter(req, res){
-       const order = req.body.order;
-       const groups = req.body.groups;
-       const products = await ProductsModel.getByFilter(order, groups);
-       res.json(products);
-    }
-
-    static async getByCollectionCode(req, res){
-       const {collection_code} = req.params;
-       const products = await ProductsModel.getByCollectionCode(collection_code);
-       res.json(products);
-    }
-
-    static async getByPrint(req, res){
-       const {code, print} = req.params;
-       const products = await ProductsModel.getByCode(code, print);
-       res.json(products);
-    }
-
-    static async getByCode(req, res){
-      const {code} = req.params;
-      const products = await ProductsModel.getByCode(code);
+   static async getBy(req, res){
+      let products;
+      //el operador !! se usa para que se evalue el switch de forma booleana y funcione
+      switch(true){
+         case !!req.params.order:
+            products = await ProductsModel.getByOrder(req.params.order);
+            break;
+         case !!(req.body.order && req.body.groups):
+            products = await ProductsModel.getByFilter(req.body.order, req.body.groups);
+            break;
+         case !!req.params.collection_code: 
+            products = await ProductsModel.getByCollectionCode(req.params.collection_code);
+            break;
+         case !!(req.params.code && req.params.print):
+            products = await ProductsModel.getByCode(req.params.code, req.params.print);
+            break;
+         case !!req.params.code:
+            products = await ProductsModel.getByCode(req.params.code);
+            break;
+         case !!req.params.search:
+            products = await ProductsModel.getByName(req.params.search);   
+            break;
+         default: products = undefined;
+            break;
+      }
       res.json(products);
-    }
+   }
 
     static async createProduct(req, res){
        

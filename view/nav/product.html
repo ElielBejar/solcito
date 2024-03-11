@@ -28,11 +28,14 @@
                 </div>
             </div>
             <nav>
-                <div class="search">
-                    <form action="get">
-                        <input type="text" placeholder="Busca un articulo">
-                        <input type="submit" value="Buscar">
-                    </form>
+                <div class="search_container">
+                    <div class="search">
+                        <input type="text" id="text_search" placeholder="Busca un articulo" autocomplete="off">
+                        <div class="results">
+                            <ul id="list_results">
+                            </ul>
+                        </div>
+                    </div>
                 </div>
                 <div class="options" id="options">
                     <ul>
@@ -60,6 +63,15 @@
                     <div class="designs_product" id="designs_product">
                         <span>Otros diseños:</span>
                     </div>
+                    <div class="sizes_product" id="sizes_product">
+                       <div class="size_product">
+                          <ul>
+                            <li>0M</li>
+                            <li>1M</li>
+                            <li>2M</li>
+                            <li>3M</li>
+                       </div>
+                    </div>
                     <div class="general_info">
                         <p>Estamos en Tucumán 2100, CABA <br>
                             Lunes a viernes de 9:30 a 17:00 <br>
@@ -72,7 +84,7 @@
         <aside>
             <div class="other_products">
                 <h2>También te puede interesar</h2>
-                <div class="products_container" id="products_container">    
+                <div class="products_container" id="products_container">
                 </div>
             </div>
         </aside>
@@ -102,6 +114,7 @@
     <script src="../scripts/index/navToogle.js"></script>
     <script src="../scripts/index/domProducts.js"></script>
     <script src="../scripts/domProduct.js"></script>
+    <script src="../scripts/index/search.js"></script>
     <script src="../scripts/fetch.js"></script>
     <script src="../scripts/getProduct.js"></script>
 </body>

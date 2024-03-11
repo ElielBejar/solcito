@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,6 +12,7 @@
     <link rel="stylesheet" href="../estilos/index/whatsapp.css">
     <link rel="stylesheet" href="../estilos/index/footer.css">
 </head>
+
 <body>
     <div class="content">
         <header>
@@ -26,11 +28,14 @@
                 </div>
             </div>
             <nav>
-                <div class="search">
-                    <form action="get">
-                        <input type="text" placeholder="Busca un articulo">
-                        <input type="submit" value="Buscar">
-                    </form>
+                <div class="search_container">
+                    <div class="search">
+                        <input type="text" id="text_search" placeholder="Busca un articulo" autocomplete="off">
+                        <div class="results">
+                            <ul id="list_results">
+                            </ul>
+                        </div>
+                    </div>
                 </div>
                 <div class="options" id="options">
                     <ul>
@@ -55,9 +60,11 @@
             <div class="media_container">
                 <h4>Seguinos en nuestras redes sociales</h4>
                 <div class="media">
-                    <a href="https://www.facebook.com/solcitoweb"><img src="../img/utils/facebook.png" alt="facebook"></a>
+                    <a href="https://www.facebook.com/solcitoweb"><img src="../img/utils/facebook.png"
+                            alt="facebook"></a>
                     <a href="https://wa.me/c/5491130269534"><img src="../img/utils/whatsapp.png" alt="whatsapp"></a>
-                    <a href="https://www.instagram.com/solcito_prendas/"><img src="../img/utils/instagram.png" alt="instagram"></a>
+                    <a href="https://www.instagram.com/solcito_prendas/"><img src="../img/utils/instagram.png"
+                            alt="instagram"></a>
                 </div>
                 <div class="contact">
                     Contactanos:
@@ -67,10 +74,12 @@
                 </div>
             </div>
         </footer>
-        </div>
-        <script src="../scripts/index/navToogle.js"></script>
-        <script src="../scripts/domCollections.js"></script>
-        <script src="../scripts/fetch.js"></script>
-        <script src="../scripts/getCollections.js"></script>
+    </div>
+    <script src="../scripts/index/navToogle.js"></script>
+    <script src="../scripts/index/search.js"></script>
+    <script src="../scripts/domCollections.js"></script>
+    <script src="../scripts/fetch.js"></script>
+    <script src="../scripts/getCollections.js"></script>
 </body>
+
 </html>

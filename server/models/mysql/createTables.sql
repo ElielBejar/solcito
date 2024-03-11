@@ -19,6 +19,24 @@ CREATE TABLE colecciones(
     date_created TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+CREATE TABLE stock(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    code INT UNSIGNED NOT NULL,
+    print_code  INT UNSIGNED NOT NULL,
+    size VARCHAR(255) NOT NULL,
+    quantity INT UNSIGNED NOT NULL
+);
+
+INSERT INTO stock (code, print_code, size, quantity) VALUES 
+(24510, 1, 0, 20),
+(24510, 1, 1, 10),
+(24510, 1, 2, 10),
+(24510, 1, 3, 20),
+(24510, 2, 0, 5),
+(24510, 2, 1, 0),
+(24510, 2, 2, 30),
+(24510, 2, 3, 2);
+
 /*collection_code:
 primeros dos digitos: año
 y los siguientes digitos es por las edades(group_code)
@@ -33,6 +51,7 @@ y los siguientes digitos es por las edades(group_code)
 4161: de 4 a 16 anios nena
 1: accesorios
 */
+
 
 INSERT INTO articulos (code, name, colection_code, print_code, img, price, group_code, sales) VALUES 
     (24510, "enterito bebe algodón c/gorrito", 243, 1, ".\\view\\img\\articles\\24510.png", 3990.00, 3, 20), 
@@ -60,7 +79,6 @@ INSERT INTO articulos (code, name, colection_code, print_code, img, price, group
     (24216, "ajuar por 5 pzas algodón c/picot", 243, 1, ".\\view\\img\\articles\\24216.png", 7590.00, 3, 27),
     (23500, "ajuar 5 pzas algodón", 233, 1, ".\\view\\img\\articles\\23500.png", 8990.00, 3, 4),
     (23504, "camperita algodón matelase", 233, 1, ".\\view\\img\\articles\\23504.png", 7290.00, 3, 16);
-
 
 INSERT INTO colecciones (colection_code, name, img) values 
 (244160, "colección 2024 - teens", "../img/collections/colection1.jpg"),

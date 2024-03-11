@@ -23,3 +23,11 @@ body{
 .content{
     margin:auto;
 }
+
+ul{
+    list-style: none;
+}
+
+a{
+    text-decoration: none;
+}

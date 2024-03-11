@@ -18,32 +18,36 @@ function sqlOrder(order){
 }
 
 export class ProductsModel {
+
+    static async executeQuery(sql, params){
+       const [info] = await connection.query(sql, params);
+       return info;
+    }
     
     static async getByOrder(order) {
-        
-        const [info] = await connection.query("SELECT * FROM articulos WHERE print_code = 1"+sqlOrder(order));
-        return info;
+        return await this.executeQuery("SELECT * FROM articulos WHERE print_code = 1"+sqlOrder(order), []);
     }
 
     static async getByFilter(order, groups){
         const placeholders = groups.map(() => '?').join(',');
-        const sql = `SELECT * FROM articulos WHERE print_code = 1 AND group_code IN (${placeholders})` + sqlOrder(order); 
-        const [info] = await connection.query(sql, groups);
-        return info;
+        return await this.executeQuery(`SELECT * FROM articulos WHERE print_code = 1 AND group_code IN (${placeholders})` + sqlOrder(order), groups);
     }
 
     static async getByCollectionCode(collection_code){
-        const [info] = await connection.query("SELECT * FROM articulos WHERE colection_code = ?", [collection_code]);
-        return info;
+        return await this.executeQuery("SELECT * FROM articulos WHERE colection_code = ?", [collection_code]);
     }
 
     static async getByPrint(code, print){
-        const [info] = await connection.query("SELECT * FROM articulos WHERE code = ? AND print_code = ?", [code, print]);
-        return info;
+        return await this.executeQuery("SELECT * FROM articulos WHERE code = ? AND print_code = ?", [code, print]);
     }
 
     static async getByCode(code){
-        const [info] = await connection.query("SELECT * FROM articulos WHERE code = ?", [code]);
-        return info;
+       return await this.executeQuery("SELECT * FROM articulos WHERE code = ?", [code]);
+    }
+
+    static async getByName(name){
+       const param = '%' + name + '%';
+       const params = [param];
+       return await this.executeQuery("SELECT * FROM articulos WHERE name LIKE ? AND print_code = 1", params);
     }
 }
