@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import {productsRouter} from "./routes/products.js";
 import {collectionsRouter} from "./routes/collections.js";
+import { stockRouter } from "./routes/stock.js";
 
 
 const app = express();
@@ -11,5 +12,6 @@ app.use(express.json());//middleware para formatear la data de las req a obj jso
 app.use(cors());
 app.use("/products", productsRouter);
 app.use("/collections", collectionsRouter);
+app.use("/stock", stockRouter);
 
 app.listen(PORT, ()=>{console.log(`server listening on port ${PORT}`)});
