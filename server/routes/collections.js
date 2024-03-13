@@ -4,6 +4,6 @@ import {CollectionsController} from "../controllers/collections.js";
 export const collectionsRouter = Router();
 
 collectionsRouter.get("/", CollectionsController.getAll);
-//collectionsRouter.post("/", CollectionsController.createCollection);
+collectionsRouter.post("/", CollectionsController.createCollection);
 //collectionsRouter.patch("/", CollectionsController.updateCollection);
 //collectionsRouter.delete("/", CollectionsController.deleteCollection);
