@@ -6,4 +6,4 @@ export const collectionsRouter = Router();
 collectionsRouter.get("/", CollectionsController.getAll);
 collectionsRouter.post("/", CollectionsController.createCollection);
 //collectionsRouter.patch("/", CollectionsController.updateCollection);
-//collectionsRouter.delete("/", CollectionsController.deleteCollection);
+collectionsRouter.delete("/:collection_code", CollectionsController.deleteCollection);

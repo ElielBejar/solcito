@@ -9,7 +9,7 @@ function infoForm() {
     return {
         code: input_new_code.value,
         name: input_new_name.value,
-        img:`http://127.0.0.1:5501/view/img/${input_new_img.files[0].name}`
+        img: `http://127.0.0.1:5501/uploads/${input_new_img.files[0].name}`
     }
 }
 
@@ -22,6 +22,20 @@ button_create.addEventListener("click", function () {
     }).then(data => {
         console.log(data);
     });
+
+    const formData = new FormData();
+    formData.append('img', input_new_img.files[0]);
+
+    sendReq("/uploads/", {
+        method: 'POST',
+        body: formData
+    })
+        .then(response => {
+            // Manejar la respuesta del servidor
+        })
+        .catch(error => {
+            // Manejar errores
+        });
 });
 
 //muestra en la tabla los datos
@@ -33,23 +47,18 @@ function showCollections(data) {
         const td_img = document.createElement("td");
         const td_button = document.createElement("td");
 
-        const input_code = document.createElement("input");
-        const input_name = document.createElement("input");
-        const input_img = document.createElement("img");
-        const input_button = document.createElement("input");
+        const img_collection = document.createElement("img");
+        const btn_delete = document.createElement("input");
 
-        input_code.type = "text";
-        input_code.value = data[i].colection_code;
-        input_name.type = "text";
-        input_name.value = data[i].name;
-        input_img.src = data[i].img;
-        input_button.type = "button";
-        input_button.value = "Borrar";
+        td_code.textContent = data[i].colection_code;
+        td_name.textContent = data[i].name;
+        img_collection.src = data[i].img;
+        btn_delete.type = "button";
+        btn_delete.value = "Borrar";
+        btn_delete.addEventListener("click", function(){deleteCollection(data[i].colection_code)});
 
-        td_code.appendChild(input_code);
-        td_name.appendChild(input_name);
-        td_img.appendChild(input_img);
-        td_button.appendChild(input_button);
+        td_img.appendChild(img_collection);
+        td_button.appendChild(btn_delete);
 
         tr.appendChild(td_code);
         tr.appendChild(td_name);
@@ -58,6 +67,10 @@ function showCollections(data) {
 
         tbody_element.appendChild(tr);
     }
+}
 
-
+function deleteCollection(collection_code){
+    sendReq(`/collections/${collection_code}`, {
+        method:"DELETE"
+    });
 }
