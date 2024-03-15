@@ -1,4 +1,5 @@
 import { ProductsModel } from "../models/mysql/products.js";
+import { validateProduct } from "../utils/validations.js";
 
 export class ProductsController{
 
@@ -31,7 +32,15 @@ export class ProductsController{
    }
 
     static async createProduct(req, res){
-       
+       const valid_product = validateProduct(req.body);
+       if(valid_product.error){
+         console.log(valid_product);
+         return res.status(400).json({error:res.error});
+       }else{
+         const new_product = valid_product.data;
+         ProductsModel.createProduct(new_product);
+         res.json(new_product);
+       }
     }
 
     static async updateProduct(req, res){
@@ -39,6 +48,6 @@ export class ProductsController{
     }
 
     static async deleteProduct(req, res){
-
+        await ProductsModel.deleteProduct(req.params.id);
     }
 }

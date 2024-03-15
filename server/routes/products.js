@@ -11,5 +11,6 @@ productsRouter.get("/product/:code/:print", ProductsController.getBy);
 productsRouter.get("/product/:code", ProductsController.getBy);
 productsRouter.get("/search/:search", ProductsController.getBy);
 productsRouter.post("/filter", ProductsController.getBy);
-/*productsRouter.patch("/", ProductsController.updateProduct);
-productsRouter.delete("/", ProductsController.deleteProduct);*/
+productsRouter.post("/", ProductsController.createProduct);
+//productsRouter.patch("/", ProductsController.updateProduct);
+productsRouter.delete("/:id", ProductsController.deleteProduct);

@@ -50,4 +50,15 @@ export class ProductsModel {
        const params = [param];
        return await this.executeQuery("SELECT * FROM articulos WHERE name LIKE ? AND print_code = 1", params);
     }
+
+    static async createProduct(new_product){
+       const sql = "INSERT INTO articulos (code, name, colection_code, print_code, img, price, group_code, sales) VALUES"+
+                   " (?, ?, ?, ?, ?, ?, ?, ?)";
+       return await connection.query(sql, [new_product.code, new_product.name, new_product.collection, new_product.print, 
+                                           new_product.img, new_product.price, new_product.group, 0]);
+    }
+
+    static async deleteProduct(id){
+        return await connection.query("DELETE FROM articulos WHERE id = ?", [id]);
+    }
 }

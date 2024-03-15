@@ -8,6 +8,9 @@ sendReq(`/products/collection/${collection_code}`, {
     headers: { "Content-Type": "application/json" },
 }).then(data => {
     const name_label = document.getElementById("name_collection");
+    //si hay al menos un producto mostralos, sino tira error:
+    if(data.length > 0){
     name_label.textContent = "Colección: " + data[0].colection_code;
     showProducts(data);
+    }
 });

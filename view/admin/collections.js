@@ -46,6 +46,8 @@ function showCollections(data) {
         const td_name = document.createElement("td");
         const td_img = document.createElement("td");
         const td_button = document.createElement("td");
+        const td_link = document.createElement("td");
+        const link_collection = document.createElement("a");
 
         const img_collection = document.createElement("img");
         const btn_delete = document.createElement("input");
@@ -56,14 +58,19 @@ function showCollections(data) {
         btn_delete.type = "button";
         btn_delete.value = "Borrar";
         btn_delete.addEventListener("click", function(){deleteCollection(data[i].colection_code)});
+        link_collection.href = `./products.html?collection=${data[i].colection_code}`;
+        link_collection.textContent = "Abrir";
 
         td_img.appendChild(img_collection);
         td_button.appendChild(btn_delete);
+        td_link.appendChild(link_collection);
+
 
         tr.appendChild(td_code);
         tr.appendChild(td_name);
         tr.appendChild(td_img);
         tr.appendChild(td_button);
+        tr.appendChild(td_link);
 
         tbody_element.appendChild(tr);
     }
