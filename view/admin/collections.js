@@ -1,3 +1,12 @@
+const user = prompt("Ingrese nombre de usuario: ");
+const password = prompt("Ingrese su contraseña: ");
+
+if(user == "admin" && password == "14052004"){
+    alert("Bienvenido!");
+}else{
+    window.location.href = "../../index.html";
+}
+
 const tbody_element = document.getElementById("tbody_collections");
 
 const button_create = document.getElementById("button_create");

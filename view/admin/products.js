@@ -71,14 +71,18 @@ function showProducts(data) {
       const td_price = document.createElement("td");
       const td_group = document.createElement("td");
       const td_delete = document.createElement("td");
+      const td_open = document.createElement("td");
+
       const img_product = document.createElement("img");
       const button_delete = document.createElement("input");
+      const link_stock = document.createElement("a");
 
       td_code.textContent = data[i].code;
       td_name.textContent = data[i].name;
       td_print.textContent = data[i].print_code;
       td_price.textContent = `$${data[i].price}`;
       td_group.textContent = group_dictionary(data[i].group_code);
+      td_open.appendChild(link_stock);
 
       button_delete.type = "button";
       button_delete.value = "Borrar";
@@ -87,6 +91,9 @@ function showProducts(data) {
       });
 
       img_product.src = data[i].img;
+
+      link_stock.href = `http://127.0.0.1:5501/view/admin/stock.html?code=${data[i].code}&print=${data[i].print_code}`;
+      link_stock.textContent = "Abrir";
 
       td_img.appendChild(img_product);
       td_delete.appendChild(button_delete);
@@ -98,6 +105,7 @@ function showProducts(data) {
       tr.appendChild(td_price);
       tr.appendChild(td_group);
       tr.appendChild(td_delete);
+      tr.appendChild(td_open);
 
       tbody_products.appendChild(tr);
    }

@@ -1,15 +1,20 @@
 table{
-    margin:1em auto;
     border:solid 0.1em black;
     border-collapse:collapse;
     width:90%;
+    font-size:0.8em;
+    table-layout: auto;
+    margin:auto;
 }
 
-table tbody tr td{
+table tbody tr td, th{
+    width:auto;
     text-align: center;
     border:solid black 0.1em;
-    padding:1em;
-    height:100px;
+    /*padding:1em;*/
+    height:80px;
+    margin:0;
+    padding:0;
 }
 
 table tr td img{
@@ -26,7 +31,7 @@ table tr td input{
     height:50%;
 }
 
-.new_collection_container, .new_product_container{
+.new_collection_container, .new_product_container, .new_stock_container{
     width:30%;
     margin:auto;
     padding:1em;
@@ -38,7 +43,7 @@ h2{
 }
 
 select{
-    margin:1em 0;
+    margin:1em auto;
 }
 
 form{

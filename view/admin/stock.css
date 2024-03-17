@@ -1,0 +1,24 @@
+.crud_stock{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.img_article{
+  margin-left:10%;
+  align-self: center;
+  flex-basis: 30%;
+}
+
+.new_stock_container{
+  flex-basis: 40%;
+}
+
+.img_article img{
+    display: block;
+    width:100%;
+}
+
+.stock{
+  flex-basis: 100%;
+}

@@ -5,6 +5,29 @@ export function validateCollection(object){
     return esquema_collection.safeParse(object);
 }
 
+export function validateStock(object){
+
+    const new_object = {
+        code:parseInt(object.code),
+        print:parseInt(object.print),
+        size:object.size,
+        quantity:parseInt(object.quantity)
+    }
+
+    return esquema_stock.safeParse(new_object);
+}
+
+export function validatePartialStock(object){
+    const new_object = {
+        code:parseInt(object.code),
+        print:parseInt(object.print),
+        size:object.size,
+        quantity:parseInt(object.quantity)
+    }
+
+    return esquema_stock.partial().safeParse(new_object);
+}
+
 export function validateProduct(object){
     //debido al stringify, hay que restaurar los valores que eran numeros:
     const new_object = {
@@ -34,4 +57,11 @@ const esquema_product = z.object({
     price:z.number().positive(),
     group:z.number().int().positive(),
     collection:z.number().int()
+});
+
+const esquema_stock = z.object({
+    code: z.number().int().positive(),
+    print: z.number().int().positive(),
+    size: z.string(),
+    quantity: z.number().int().positive()
 });

@@ -34,7 +34,6 @@ export class ProductsController{
     static async createProduct(req, res){
        const valid_product = validateProduct(req.body);
        if(valid_product.error){
-         console.log(valid_product);
          return res.status(400).json({error:res.error});
        }else{
          const new_product = valid_product.data;
