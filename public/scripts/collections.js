@@ -1,13 +1,4 @@
-const user = prompt("Ingrese nombre de usuario: ");
-const password = prompt("Ingrese su contraseña: ");
-
-if(user == "admin" && password == "14052004"){
-    alert("Bienvenido!");
-}else{
-    window.location.href = "../nav/home.html";
-}
-
-const tbody_element = document.getElementById("tbody_collections");
+    const tbody_element = document.getElementById("tbody_collections");
 
 const button_create = document.getElementById("button_create");
 const input_new_code = document.getElementById("collection_code");
@@ -18,7 +9,7 @@ function infoForm() {
     return {
         code: input_new_code.value,
         name: input_new_name.value,
-        img: `http://127.0.0.1:5501/uploads/collections/${input_new_img.files[0].name}`
+        img: `../uploads/collections/${input_new_img.files[0].name}`
     }
 }
 

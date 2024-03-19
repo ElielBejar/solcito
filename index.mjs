@@ -1,11 +1,22 @@
 import express from "express";
 import cors from "cors";
+import path from "path"
+import session from "express-session";
 import {productsRouter} from "./routes/products.js";
 import {collectionsRouter} from "./routes/collections.js";
 import {stockRouter} from "./routes/stock.js";
 import {uploadsRouter} from "./routes/uploads.js"; 
 import {cartRouter} from "./routes/cart.js"
-import session from "express-session";
+
+
+//prueba
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+//
 
 const app = express();
 const PORT = process.env.PORT ?? 3000;
@@ -16,6 +27,7 @@ app.use(session({
     resave:true,
     saveUninitialized:true
 }));
+app.use(express.static(path.join(__dirname, 'public')));
 app.use("/products", express.json());//middleware para formatear la data de las req a obj json
 app.use("/collections", express.json());
 app.use("/stock", express.json());
@@ -26,4 +38,13 @@ app.use("/collections", collectionsRouter);
 app.use("/stock", stockRouter);
 app.use("/cart", cartRouter);
 
-app.listen(PORT, ()=>{console.log(`server listening on port ${PORT}`)});
+//cargar las paginas:
+app.get("/", (req, res)=>{
+    res.sendFile(path.join(__dirname, "public", "client", "home.html"));
+});
+
+app.get("/nav/:dir", (req, res)=>{
+    res.sendFile(path.join(__dirname, "public", "client", `${req.params.dir}`));
+});
+
+app.listen(PORT, ()=>{console.log(`server listening on port http://localhost:${PORT}`)});

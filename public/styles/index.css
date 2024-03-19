@@ -1,0 +1,33 @@
+*{
+    margin:0;
+    padding:0;
+    font-family:Arial, Helvetica, sans-serif;
+    --guardsman-red-50: #ffefef;
+    --guardsman-red-100: #ffdcdc;
+    --guardsman-red-200: #ffbfbf;
+    --guardsman-red-300: #ff9293;
+    --guardsman-red-400: #ff5455;
+    --guardsman-red-500: #ff1f20;
+    --guardsman-red-600: #ff0001;
+    --guardsman-red-700: #db0001;
+    --guardsman-red-800: #c40001;
+    --guardsman-red-900: #940809;
+    --guardsman-red-950: #520000;
+      box-sizing: border-box;
+}
+
+body{
+    background-color: var(--guardsman-red-50);
+}
+
+.content{
+    margin:auto;
+}
+
+ul{
+    list-style: none;
+}
+
+a{
+    text-decoration: none;
+}

@@ -1,7 +1,7 @@
 import {renameSync} from "node:fs";
 
 function saveImg(type, file){
-    const newPath = `./uploads/${type}/${file.originalname}`;
+    const newPath = `./public/uploads/${type}/${file.originalname}`;
     renameSync(file.path, newPath);
     return newPath;
 }

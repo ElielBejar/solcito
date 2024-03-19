@@ -21,7 +21,7 @@ function showDesigns(data) {
         const link_design = document.createElement("a");
         const img_design = document.createElement("img");
 
-        link_design.href = `http://127.0.0.1:5501/views/nav/product.html?code=${data[i].code}&print_code=${data[i].print_code}`;
+        link_design.href = `./product.html?code=${data[i].code}&print_code=${data[i].print_code}`;
         img_design.src = data[i].img;
         img_design.alt = data[i].name;
 

@@ -1,0 +1,136 @@
+
+.selected_product{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.selected_product .img_product{
+    flex-grow: 1;
+    flex-basis: 30%;
+    margin:2em;
+}
+.selected_product img{
+    display: block;
+    width: 100%;
+    height:100%;
+    object-fit: cover;
+}
+
+.selected_product .options_product{
+    margin:2em;
+    flex-basis: 50%;
+}
+
+.options_product{
+    display: flex;
+    flex-direction: column;
+}
+
+.options_product .info_product{
+    padding:1em;
+    background-color: var(--guardsman-red-100);
+    color: var(--guardsman-red-950);
+}
+
+.options_product .info_product .price{
+    font-size: 1.2em;
+    display: flex;
+    justify-content: space-between;
+}
+
+.designs_product{
+    color:var(--guardsman-red-950);
+    display: flex;
+    flex-wrap: wrap;
+    padding-top:1em;
+    justify-content: space-evenly;
+}
+
+.designs_product span{
+    flex-basis: 100%;
+}
+
+.designs_product a{
+    flex-basis: 25%;
+    height:200px;
+}
+
+
+.sizes_product ul{
+    display:flex;
+    flex-wrap: wrap;
+}
+
+.sizes_product ul li{
+    padding:0.7em;
+    flex-basis: 10%;
+    margin:1em;
+    text-align: center;
+    font-size: 0.7em;
+}
+
+.sizes_product ul .onstock{
+    color:var(--guardsman-red-50);
+    background-color:var(--guardsman-red-400);
+    cursor:pointer;
+}
+
+.sizes_product ul .offstock{
+    background-color: var(--guardsman-red-400);
+    opacity: 0.5;
+    color:#000;
+    user-select: none;
+}
+
+.btn_add_cart{
+    border: none;
+    padding:1em;
+    width:100%;
+}
+
+.btn_yes_stock{
+    background-color: var(--guardsman-red-950);
+    color:var(--guardsman-red-50);
+    cursor: pointer;
+}
+
+.btn_no_stock{
+    background-color: var(--guardsman-red-400);
+    color:#000;
+    opacity: 0.5;
+    user-select: none;
+}
+
+.sizes_product ul .onstock:hover, .size_selected{
+    background-color:var(--guardsman-red-950);
+    color:var(--guardsman-red-50);
+    cursor:pointer;
+}
+
+.general_info{
+    background-color: var(--guardsman-red-100);
+    color: var(--guardsman-red-950);
+    margin:1em 0;
+    padding:1em;
+}
+
+aside .other_products{
+    padding:2em;
+}
+
+aside .other_products h2{
+    padding:1em 0;
+    color: var(--guardsman-red-950);
+}
+
+@media only screen and (max-width:750px){
+    .selected_product .img_product{
+        flex-basis: 100%;
+        margin:0;
+    }
+    .selected_product .options_product{
+        margin:0;
+        flex-basis: 100%;
+    }
+}

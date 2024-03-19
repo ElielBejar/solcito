@@ -46,7 +46,7 @@ export function validateProduct(object){
 const esquema_collection = z.object({
     code:z.string(),
     name:z.string(),
-    img:z.string().url()
+    img:z.string()
 });
 
 const esquema_product = z.object({
