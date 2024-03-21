@@ -84,6 +84,7 @@ function showSizes(data) {
 
 function infoProduct(){
     return {
+        code_article:code,
         img:img_selected_product.src,
         name:name_selected_product.textContent,
         print:print_param,

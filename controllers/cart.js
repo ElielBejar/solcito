@@ -1,4 +1,5 @@
 function isProductAlreadySelected(cart, product){
+
     const product_found = cart.find(function(p){
          return p.name == product.name && 
                 p.print == product.print &&
@@ -30,6 +31,11 @@ export class cartController{
     }
 
     static async getCart(req, res){
+        res.json(req.session.cart);
+    }
+
+    static async deleteProduct(req, res){
+        req.session.cart.splice(req.params.index, 1);
         res.json(req.session.cart);
     }
 }

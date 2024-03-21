@@ -21,6 +21,11 @@ export class StockController {
         res.json(sizes);
     }
 
+    static async getQuantity(req, res){
+        const quantity = await StockModel.getQuantity(req.params.code, req.params.print, req.params.size);
+        res.json(quantity);
+    }
+
     static async addStock(req, res){
         const validStock = validateStock(req.body);
         if(validStock.error){

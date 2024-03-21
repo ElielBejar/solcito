@@ -12,6 +12,12 @@ export class StockModel{
         return info;
     }
 
+    static async getQuantity(code, print, size){
+        const [info] = await connection.query("SELECT quantity FROM stock WHERE code = ? AND print_code = ? AND size = ?", 
+        [code, print, size]);
+        return info;
+    }
+
     static async addStock(stock){
        const [info] = await connection.query("INSERT INTO stock (code, print_code, size, quantity) VALUES (?,?,?,?)",
                                              [stock.code, stock.print, stock.size, stock.quantity]);

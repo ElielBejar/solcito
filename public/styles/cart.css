@@ -22,12 +22,13 @@ main{
 }
 
 .info_container{
-    flex-grow:1;
+    flex-basis: 80%;
     display: flex;
     flex-wrap: wrap;
 }
 
 .product_on_list .img_container{
+    flex-grow: 1;
     display: flex;
     flex-basis:20%;
     padding:0.5em;
@@ -71,14 +72,17 @@ main{
 
 .product_tools input[type="button"], .resume_costs div input[type="button"]{
     outline:none;
-    padding:0.5em;
     background-color: var(--guardsman-red-950);
     border:none;
     color:var(--guardsman-red-50);
+    padding:0.5em;
+    margin-left:0.5em;
+    cursor:pointer;
 }
 
 .product_tools input[type="text"]{
-    border:solid 0.1em var(--guardsman-red-950);
+    padding:0.5em;
+    border:none;
     background-color: var(--guardsman-red-50);
     width:10%;
     outline:none;
@@ -110,4 +114,36 @@ main{
 
 .resume_costs div input[type="button"]{
     width:100%;
+}
+
+@media only screen and (max-width:1024px){
+    .cart_container, .resume_costs{
+        flex-basis: 100%;
+        margin:0;
+    }
+
+    .img_container{
+        flex-basis:40%;
+    }
+
+    .cart_container h1{
+        margin-left:1em;
+    }
+
+    .info_container{
+        flex-basis:70%;
+    }
+     
+    .info_product{
+        flex-basis: 100%;
+        flex-wrap:wrap;
+        font-size: 0.8em;
+    }
+
+    .info_product span{
+        flex-basis: 100%;
+    }
+    .product_tools{
+        flex-basis: 100%;
+    }
 }
