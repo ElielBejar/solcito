@@ -111,15 +111,12 @@ function addCart() {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(infoProduct())
-    }).then(response => {
-        if (!response.ok) {
-            throw new Error('Error en la solicitud: ' + response.status);
-        }
-        return response.json(); // Convertir la respuesta a JSON
     }).then(data => {
         console.log(data);
         btn_add_cart.style.backgroundColor = "#085801";
-        btn_add_cart.value = "Agregado al carrito";
+        btn_add_cart.value = data.message;
+        btn_add_cart.style.cursor = "auto";
+        btn_add_cart.removeEventListener("click", addCart);
     }).catch(error => {
         console.error("Error en la respuesta: ", error);
     });

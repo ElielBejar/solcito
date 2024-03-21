@@ -53,7 +53,7 @@ const esquema_product = z.object({
     code: z.number().int().positive(),
     name: z.string(),
     print: z.number().int().positive(),
-    img: z.string().url(),
+    img: z.string(),
     price:z.number().positive(),
     group:z.number().int().positive(),
     collection:z.number().int()

@@ -1,9 +1,46 @@
-    const tbody_element = document.getElementById("tbody_collections");
+const tbody_element = document.getElementById("tbody_collections");
 
 const button_create = document.getElementById("button_create");
 const input_new_code = document.getElementById("collection_code");
 const input_new_name = document.getElementById("name_collection");
 const input_new_img = document.getElementById("img_collection");
+const crud_collections = document.getElementById("crud_collections");
+const login = document.getElementById("login");
+const input_user = document.getElementById("user");
+const input_password = document.getElementById("password");
+const button_login = document.getElementById("button_login");
+
+isLogged();
+
+//ver si primero está loggeado:
+function isLogged() {
+    sendReq("/admin/session", {
+        method: "GET",
+        headers: { "Content-Type": "application/json" }
+    }).then(data => {
+        if (data.login == "true") {
+            login.style.display = "none";
+            crud_collections.style.display = "block";
+        }
+    });
+
+}
+button_login.addEventListener("click", function () {
+    const user = input_user.value;
+    const password = input_password.value;
+    console.log(JSON.stringify({ user, password }));
+    sendReq("/admin/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ user, password })
+    }).then(data => {
+        if (data.login == "true") {
+            isLogged();
+        }else{
+            alert("Usuario o contraseña incorrecta");
+        }
+    });
+});
 
 function infoForm() {
     return {
@@ -57,7 +94,7 @@ function showCollections(data) {
         img_collection.src = data[i].img;
         btn_delete.type = "button";
         btn_delete.value = "Borrar";
-        btn_delete.addEventListener("click", function(){deleteCollection(data[i].colection_code)});
+        btn_delete.addEventListener("click", function () { deleteCollection(data[i].colection_code) });
         link_collection.href = `./products.html?collection=${data[i].colection_code}`;
         link_collection.textContent = "Abrir";
 
@@ -76,8 +113,8 @@ function showCollections(data) {
     }
 }
 
-function deleteCollection(collection_code){
+function deleteCollection(collection_code) {
     sendReq(`/collections/${collection_code}`, {
-        method:"DELETE"
+        method: "DELETE"
     });
 }

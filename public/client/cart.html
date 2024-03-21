@@ -7,9 +7,8 @@
     <title>Solcito - Ropa y accesorios</title>
     <link rel="stylesheet" href="../styles/index.css">
     <link rel="stylesheet" href="../styles/header.css">
-    <link rel="stylesheet" href="../styles/colections.css">
-    <link rel="stylesheet" href="../styles/main_title.css">
     <link rel="stylesheet" href="../styles/whatsapp.css">
+    <link rel="stylesheet" href="../styles/cart.css">
     <link rel="stylesheet" href="../styles/footer.css">
 </head>
 
@@ -23,7 +22,7 @@
             </div>
             <div class="tools_container">
                 <div class="tools">
-                    <a href="#2"><img src="../../uploads/utils/carrito.png" alt="carrito"></a>
+                    <a href="./cart.html"><img src="../../uploads/utils/carrito.png" alt="carrito"></a>
                 </div>
             </div>
             <nav>
@@ -38,7 +37,7 @@
                 </div>
                 <div class="options" id="options">
                     <ul>
-                        <li><a href="./home.html">Inicio</a></li>
+                        <li><a href="../">Inicio</a></li>
                         <li><a href="./collections.html">Colecciones</a></li>
                         <li><a href="./contact.html">Contacto</a></li>
                         <li><a href="./about.html">Sobre la empresa</a></li>
@@ -47,9 +46,34 @@
             </nav>
         </header>
         <main>
-            <h1>Nuestras colecciones!</h1>
-            <div class="colections" id="collections">
+            <div class="cart_container">
+                <h1>Tus articulos del carrito</h1>
+                <ul id="list_products_selected">
+                </ul>
             </div>
+            <div class="resume_costs">
+                <h2>Resumen de compra</h2>
+                <div class="order_price">
+                    <span>Pedido: </span>
+                    <span>$23450</span>
+                </div>
+                <div class="transport_price">
+                    <span>Envío:</span>
+                    <span>$4000</span>
+                </div>
+                <div class="total_price">
+                    <span>Total:</span>
+                    <span>$27450</span>
+                </div>
+                <div class="buy_product">
+                    <input type="button" value="Comprar">
+                </div>
+            </div>
+            <!--<div class="shipping">
+                <h3>Cómo entregamos su compra</h3>
+                <input type="radio" name="shipping" id="factory_option">
+                <label for="factory_option">Retiro en local(Tucumán 2133, CABA. 6to piso, timbre 77)</label>
+            </div>-->
         </main>
         <div class="whatsapp">
             <a href="https://wa.me/c/5491130269534"><img src="../../uploads/utils/whatsapp.png" alt="whatsapp"></a>
@@ -59,9 +83,12 @@
             <div class="media_container">
                 <h4>Seguinos en nuestras redes sociales</h4>
                 <div class="media">
-                    <a href="https://www.facebook.com/solcitoweb"><img src="../../uploads/utils/facebook.png" alt="facebook"></a>
-                    <a href="https://wa.me/c/5491130269534"><img src="../../uploads/utils/whatsapp.png" alt="whatsapp"></a>
-                    <a href="https://www.instagram.com/solcito_prendas/"><img src="../../uploads/utils/instagram.png" alt="instagram"></a>
+                    <a href="https://www.facebook.com/solcitoweb"><img src="../../uploads/utils/facebook.png"
+                            alt="facebook"></a>
+                    <a href="https://wa.me/c/5491130269534"><img src="../../uploads/utils/whatsapp.png"
+                            alt="whatsapp"></a>
+                    <a href="https://www.instagram.com/solcito_prendas/"><img src="../../uploads/utils/instagram.png"
+                            alt="instagram"></a>
                 </div>
                 <div class="contact">
                     Contactanos:
@@ -74,10 +101,9 @@
     </div>
     <script src="../scripts/navToogle.js"></script>
     <script src="../scripts/search.js"></script>
-    <script src="../scripts/domCollections.js"></script>
     <script src="../scripts/fetch.js"></script>
-    <script src="../scripts/index/cart.js"></script>
-    <script src="../scripts/getCollections.js"></script>
+    <script src="../scripts/cart.js"></script>
+    <script src="../scripts/domCart.js"></script>
 </body>
 
 </html>

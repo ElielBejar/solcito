@@ -1,3 +1,45 @@
+.crud_collections{
+    display: none;
+}
+
+.login{
+    position: absolute;
+    background-color:rgb(0, 88, 165);
+    display: flex;
+    top:30%;
+    left:30%;
+    width:40%;
+    height:40%;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    border-radius:1em;
+}
+
+.login label{
+    color:rgb(255, 255, 255);
+}
+
+.login label, .login input[type="text"], .login input[type="password"]{
+    align-self: center;
+    text-align: center;
+    width:70%;
+    padding:0.5em;
+    outline:none;
+    border:none;    
+    
+}
+
+.button_login{
+    background-color:rgb(255, 255, 255);
+    margin:1em;
+    padding:0.5em;
+    align-self: center;
+    width:30%;
+    border:none;
+    cursor:pointer;
+}
+
 table{
     border:solid 0.1em black;
     border-collapse:collapse;

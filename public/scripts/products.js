@@ -7,12 +7,22 @@ const input_price = document.getElementById("price_product");
 const input_group = document.getElementById("group_product");
 const button_create = document.getElementById("button_create");
 
+
+sendReq("/admin/session", {
+   method: "GET",
+   headers: { "Content-Type": "application/json" }
+}).then(data => {
+   if (data.login == "false") {
+       document.location.href = "../admin";
+   }
+});
+
 function infoForm() {
    return {
       code: input_code.value,
       name: input_name.value,
       print: input_print.value,
-      img: `http://127.0.0.1:5501/uploads/products/${input_img.files[0].name}`,
+      img: `../uploads/products/${input_img.files[0].name}`,
       price: input_price.value,
       group: input_group.value,
       collection: collection_code
@@ -92,7 +102,7 @@ function showProducts(data) {
 
       img_product.src = data[i].img;
 
-      link_stock.href = `http://127.0.0.1:5501/views/admin/stock.html?code=${data[i].code}&print=${data[i].print_code}`;
+      link_stock.href = `./stock.html?code=${data[i].code}&print=${data[i].print_code}`;
       link_stock.textContent = "Abrir";
 
       td_img.appendChild(img_product);

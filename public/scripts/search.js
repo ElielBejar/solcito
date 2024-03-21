@@ -20,7 +20,7 @@ function showListResult(data){
         const a_result = document.createElement("a");
         
         a_result.textContent = data[i].name;
-        a_result.href = `http://127.0.0.1:5501/views/nav/product.html?code=${data[i].code}&print_code=${data[i].print_code}`;
+        a_result.href = `http://localhost:3000/nav/product.html?code=${data[i].code}&print_code=${data[i].print_code}`;
 
         list_results.appendChild(li_result);
         li_result.appendChild(a_result);

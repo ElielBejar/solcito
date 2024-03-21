@@ -1,3 +1,12 @@
+sendReq("/admin/session", {
+    method: "GET",
+    headers: { "Content-Type": "application/json" }
+ }).then(data => {
+    if (data.login == "false") {
+        document.location.href = "../admin";
+    }
+ });
+
 const tbody_stock = document.getElementById("tbody_stock");
 const h1_title = document.getElementsByTagName("h1").item(0);
 const img_article = document.getElementById("img_art");
