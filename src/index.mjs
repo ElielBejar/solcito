@@ -9,6 +9,7 @@ import {uploadsRouter} from "./routes/uploads.js";
 import {cartRouter} from "./routes/cart.js"
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
+import {USER, PASSWORD} from "./utils/config.js"
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -47,7 +48,8 @@ app.get("/admin/session", (req, res)=>{
 });
 
 app.post("/admin/login", function(req, res){
-    if(req.body.user == "admin" && req.body.password == "14052004"){
+
+    if(req.body.user == `${USER}` && req.body.password == `${PASSWORD}`){
         req.session.login = true;
         res.json({login:"true"});
     }else{

@@ -50,7 +50,7 @@ function getInfo(code, print){
 
 getInfo(code_param, print_param);
 
-sendReq("/stock/", {
+sendReq(`/stock/sizes/${code_param}/${print_param}`, {
     method:"GET",
     header:{"Content-Type":"application/json"}
 }).then(data => {
