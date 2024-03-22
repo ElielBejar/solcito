@@ -1,52 +1,67 @@
 const ul_selected_products = document.getElementById("list_products_selected");
+const span_total_cart_price = document.getElementById("total_cart_price");
+const button_buy = document.getElementById("button_buy");
+const cart_prices = [];
 
+
+function checkEmptyCart(data) {
+    if (data.length == 0) {
+        ul_selected_products.textContent = "Aún no hay nada en el carrito";
+        button_buy.style.display = "none";
+        return true;
+    } else {
+        return false;
+    }
+}
 
 sendReq("/cart/get", {
     method: "GET",
     headers: { "Content-Type": "application/json" }
 }).then(data => {
-    showCart(data);
+    if (!checkEmptyCart(data)) {
+        showCart(data);
+    }
 });
 
-function deleteProduct(index) {
+function deleteProduct(li, index) {
     sendReq(`/cart/${index}`, {
         method: "DELETE",
     }).then(data => {
-        console.log(data);
-    });
-    li_product = document.getElementsByClassName("product_on_list")[index];
-    ul_selected_products.removeChild(li_product);
-}
-
-function checkIncreaseStock(input_quantity, product, index) {
-    const text_quantity = input_quantity.value;
-    let number_quantity = parseInt(text_quantity);
-    number_quantity++;
-    sendReq(`/stock/${product.code_article}/${product.print}/${product.size}`, {
-        method: "GET",
-        headers: { "Content-Type": "application/json" }
-    }).then(data => {
-        if (number_quantity <= data[0].quantity) {
-            input_quantity.value = `${number_quantity}`;
-        } else {
-            if (data[0].quantity == 0) {
-                deleteProduct(index);
-            } else {
-                input_quantity.value = `${data[0].quantity}`;
-            }
+        ul_selected_products.removeChild(li);
+        cart_prices.splice(index, 1);
+        if (ul_selected_products.childNodes.length == 0) {
+            ul_selected_products.textContent = "Aún no hay nada en el carrito";
+            button_buy.style.display = "none";
         }
     });
 }
 
-function checkDecreaseStock(input_quantity, product, index) {
-    const text_quantity = input_quantity.value;
-    let number_quantity = parseInt(text_quantity);
-    number_quantity--;
-    sendReq(`/stock/${product.code_article}/${product.print}/${product.size}`, {
-        method: "GET",
-        headers: { "Content-Type": "application/json" }
-    }).then(data => {
-        if (number_quantity > 0) {
+//devuelve el numero float del precio sin el '$'
+function getFloatPrice(string_price) {
+    return parseFloat(string_price.slice(1, string_price.length));
+}
+
+// retorna un float con el precio total en función de la cantidad
+function updatePrice(price, quantity) {
+    let float_price = getFloatPrice(price);
+    return float_price * quantity;
+}
+
+function updateTotalCartPrice(index, price, quantity) {
+    cart_prices[index] = updatePrice(price, quantity);
+    const total_cart = cart_prices.reduce((total, element) => total + element, 0);
+    span_total_cart_price.textContent = `$${total_cart}`;
+}
+
+function checkIncreaseStock(input_quantity, product, index) {
+    return new Promise((resolve, reject) => {
+        const text_quantity = input_quantity.value;
+        let number_quantity = parseInt(text_quantity);
+        number_quantity++;
+        sendReq(`/stock/${product.code_article}/${product.print}/${product.size}`, {
+            method: "GET",
+            headers: { "Content-Type": "application/json" }
+        }).then(data => {
             if (number_quantity <= data[0].quantity) {
                 input_quantity.value = `${number_quantity}`;
             } else {
@@ -56,12 +71,37 @@ function checkDecreaseStock(input_quantity, product, index) {
                     input_quantity.value = `${data[0].quantity}`;
                 }
             }
-        }
+            resolve();
+        });
+    });
+}
+
+function checkDecreaseStock(input_quantity, product, index) {
+    return new Promise((resolve, reject) => {
+        const text_quantity = input_quantity.value;
+        let number_quantity = parseInt(text_quantity);
+        number_quantity--;
+        sendReq(`/stock/${product.code_article}/${product.print}/${product.size}`, {
+            method: "GET",
+            headers: { "Content-Type": "application/json" }
+        }).then(data => {
+            if (number_quantity > 0) {
+                if (number_quantity <= data[0].quantity) {
+                    input_quantity.value = `${number_quantity}`;
+                } else {
+                    if (data[0].quantity == 0) {
+                        deleteProduct(index);
+                    } else {
+                        input_quantity.value = `${data[0].quantity}`;
+                    }
+                }
+            }
+            resolve();
+        });
     });
 }
 
 function showCart(data) {
-
     while (ul_selected_products.firstChild) {
         ul_selected_products.removeChild(ul_selected_products.firstChild);
     }
@@ -102,15 +142,25 @@ function showCart(data) {
         bttn_decrement_quantity.type = "button";
         bttn_decrement_quantity.value = "-";
 
-        button_delete.addEventListener("click", function () { deleteProduct(i) });
+        button_delete.addEventListener("click", function () {
+            deleteProduct(li, i);
+            span_total_cart_price.textContent = `$${cart_prices.reduce((total, element) => total + element, 0)}`;
+        });
 
         checkIncreaseStock(input_quantity, data[i], i);
         bttn_increment_quantity.addEventListener("click", function () {
-            checkIncreaseStock(input_quantity, data[i], i);
+            checkIncreaseStock(input_quantity, data[i], i).then(() => {
+                span_price.textContent = `$${updatePrice(data[i].price, input_quantity.value)}`;
+                updateTotalCartPrice(i, data[i].price, input_quantity.value);
+            });
+            //
         });
 
         bttn_decrement_quantity.addEventListener("click", function () {
-            checkDecreaseStock(input_quantity, data[i], i);
+            checkDecreaseStock(input_quantity, data[i], i).then(() => {
+                span_price.textContent = `$${updatePrice(data[i].price, input_quantity.value)}`;
+                updateTotalCartPrice(i, data[i].price, input_quantity.value);
+            });
         });
 
         div_img.appendChild(img);
@@ -130,6 +180,9 @@ function showCart(data) {
         li.appendChild(div_info);
 
         ul_selected_products.appendChild(li);
+        cart_prices.push(getFloatPrice(data[i].price));
     }
+    //muestra el total del carrito sin contar el envío
+    span_total_cart_price.textContent = `$${cart_prices.reduce((total, element) => total + element, 0)}`;
 
 }

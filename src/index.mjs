@@ -9,12 +9,11 @@ import {uploadsRouter} from "./routes/uploads.js";
 import {cartRouter} from "./routes/cart.js"
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
-import {USER, PASSWORD} from "./utils/config.js"
+import {PORT, HOST, USER, PASSWORD} from "./utils/config.js"
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const app = express();
-const PORT = process.env.PORT ?? 3000;
 
 app.use(cors());
 app.use(session({
@@ -57,4 +56,4 @@ app.post("/admin/login", function(req, res){
     }
 });
 
-app.listen(PORT, ()=>{console.log(`server listening on port http://localhost:${PORT}`)});
+app.listen(PORT, ()=>{console.log(`server listening on port ${HOST}`)});

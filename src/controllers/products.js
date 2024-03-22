@@ -17,7 +17,7 @@ export class ProductsController{
             products = await ProductsModel.getByCollectionCode(req.params.collection_code);
             break;
          case !!(req.params.code && req.params.print):
-            products = await ProductsModel.getByCode(req.params.code, req.params.print);
+            products = await ProductsModel.getByPrint(req.params.code, req.params.print);
             break;
          case !!req.params.code:
             products = await ProductsModel.getByCode(req.params.code);
