@@ -15,6 +15,11 @@ aside .filter_container form{
     padding:1em;
 }
 
+aside .filter_container form div{
+    width:100%;
+    display: inline-block;
+}
+
 aside .filter_container form input{
     transform: scale(1.5);
 }
@@ -23,4 +28,19 @@ aside .filter_container form label{
     color: var(--guardsman-red-900);
     display: inline-block;
     margin:1em 0;
+}
+
+@media only screen and (max-width:1024px){
+    aside .filter_container form div{
+        font-size: 0.7em;
+        width:45%;
+    }
+
+    aside .filter_container form div label{
+        margin:0;
+    }
+
+    aside .filter_container form .div_order_by{
+        width:100%;
+    }
 }

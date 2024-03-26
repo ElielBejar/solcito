@@ -52,6 +52,7 @@ button_create.addEventListener("click", function () {
       .catch(error => {
          // Manejar errores
       });
+   location.reload();
 });
 
 //te devuelve el texto de la categoría según el grupo de un articulo
@@ -125,6 +126,7 @@ function deleteProduct(id){
    sendReq(`/products/${id}`, {
        method:"DELETE"
    });
+   location.reload();
 }
 
 

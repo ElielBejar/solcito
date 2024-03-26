@@ -14,6 +14,8 @@ function checkEmptyCart(data) {
     }
 }
 
+
+
 sendReq("/cart/get", {
     method: "GET",
     headers: { "Content-Type": "application/json" }

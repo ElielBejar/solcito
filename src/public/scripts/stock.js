@@ -35,6 +35,7 @@ button_send.addEventListener("click", function(){
          headers:{"Content-Type":"application/json"},
          body:JSON.stringify(infoForm(input_form_size.value, input_form_quantity.value))
     });
+    location.reload();
 });
 
 function getInfo(code, print){
@@ -70,10 +71,12 @@ function showStock(data){
        const button_delete = document.createElement("input");
        button_delete.value = "Borrar";
        button_delete.type = "button";
+       console.log(data[i].id);
        button_delete.addEventListener("click", function(){
             sendReq(`/stock/${data[i].id}`, {
                 method:"DELETE"
             });
+            location.reload();
        });
 
        const input_quantity = document.createElement("input");

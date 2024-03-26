@@ -4,6 +4,7 @@ footer h3{
     background-color: var(--guardsman-red-100);
     color: var(--guardsman-red-950);
     padding: 1em;
+    font-size: 1em;
 }
 
 footer .media_container{
@@ -45,5 +46,13 @@ footer .media_container .contact a{
 
     footer .media_container .media a{
         flex-basis: 10%;
+    }
+    .contact{
+        font-size: 0.7em;
+    }
+    .contact b, .contact a{
+        text-align: center;
+        padding:0.7em;
+        flex-basis: 100%;
     }
 }

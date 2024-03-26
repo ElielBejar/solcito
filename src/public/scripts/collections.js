@@ -36,7 +36,7 @@ button_login.addEventListener("click", function () {
     }).then(data => {
         if (data.login == "true") {
             isLogged();
-        }else{
+        } else {
             alert("Usuario o contraseña incorrecta");
         }
     });
@@ -52,27 +52,26 @@ function infoForm() {
 
 //evento del boton para mandar un post y agregar una nueva coleccion
 button_create.addEventListener("click", function () {
+    location.reload();
     sendReq("/collections/", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(infoForm())
     }).then(data => {
-        console.log(data);
-    });
 
-    const formData = new FormData();
-    formData.append('img', input_new_img.files[0]);
+        const formData = new FormData();
+        formData.append('img', input_new_img.files[0]);
 
-    sendReq("/uploads/collections", {
-        method: 'POST',
-        body: formData
-    })
-        .then(response => {
-            // Manejar la respuesta del servidor
+        sendReq("/uploads/collections", {
+            method: 'POST',
+            body: formData
         })
-        .catch(error => {
-            // Manejar errores
-        });
+            .then(response => {
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    });
 });
 
 //muestra en la tabla los datos
@@ -117,4 +116,5 @@ function deleteCollection(collection_code) {
     sendReq(`/collections/${collection_code}`, {
         method: "DELETE"
     });
+    location.reload();  
 }

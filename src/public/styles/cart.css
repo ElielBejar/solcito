@@ -1,5 +1,5 @@
 h1{
-    margin:1em 0;
+    padding:1em;
     font-size: 1em;
 }
 
@@ -9,13 +9,17 @@ main{
 }
 
 .cart_container{
-    margin-left:2em;
     flex-basis:70%;
+    padding:1em;
+}
+
+.cart{
+    background-color: var(--guardsman-red-100);
 }
 
 .product_on_list{
     display: flex;
-    background-color: var(--guardsman-red-100);
+    border:solid 0.1em var(--guardsman-red-950);
     width:100%;
     height:20vh;    
     margin:1em 0;   
@@ -90,11 +94,11 @@ main{
 }
 
 .resume_costs{
-    margin:3em;
+    padding:1em;
+    margin-top:1em;
     width:20%;
     height:100%;
     background-color: var(--guardsman-red-100);
-    padding:1em;
     flex-grow: 1;
 }
 
@@ -108,13 +112,46 @@ main{
     padding:1em;
 }
 
-.resume_costs div span:last-child{
-    margin-left:auto;
-}
-
 .resume_costs div input[type="button"]{
     width:100%;
 }
+
+.shipping{
+    background-color: var(--guardsman-red-100);
+    color:var(--guardsman-red-950);
+    padding:1em;    
+}
+
+.shipping_options .shipping_option{
+    padding:1em;
+}
+
+.info_transport{
+    display: none;
+}
+
+.info_transport form{
+    display: flex;
+    flex-direction: column;
+    width:80%;  
+}
+
+.info_transport form label{
+    padding:0.5em 0;
+}
+
+.info_transport form input{
+    padding:0.5em;
+    outline:none;
+    border:solid 0.1em var(--guardsman-red-950);
+}
+.min_cost span{
+    margin:0;
+    padding:0;
+    color:var(--guardsman-red-950);
+    font-size:1.2em;
+}
+
 
 @media only screen and (max-width:1024px){
     .cart_container, .resume_costs{
