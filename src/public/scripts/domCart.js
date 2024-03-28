@@ -12,11 +12,6 @@ function checkEmptyCart(data) {
     }
 }
 
-button_buy.addEventListener("click", function () {
-    checkout();
-});
-
-
 
 function infoCheckout() {
     const inputs_quantities = document.querySelectorAll(".input_quantity");

@@ -12,21 +12,16 @@ button_buy.addEventListener("click", function () {
 
 
 function infoCheckout() {
-    //const inputs_quantities = document.querySelectorAll(".input_quantity");
-    //const quantities = Array.from(inputs_quantities).map(function (input) { return input.value });
+    const inputs_quantities = document.querySelectorAll(".input_quantity");
+    const quantities = Array.from(inputs_quantities).map(function (input) { return input.value });
     //const inputs_shipping = document.querySelectorAll(".input_shipping");
     //const shipping = Array.from(inputs_shipping).map(function(input){return input.value});
-    //return {
+    return {
         //total: getFloatPrice(span_total_cart_price.textContent),
-        //quantities: quantities,
+        quantities: quantities,
         //shipping:shipping
 
-    //};
-    return {
-       title:"Producto1",
-       quantity:1,
-       price:100,
-    }
+    };
 }
 
 async function checkout() {
@@ -47,6 +42,7 @@ async function checkout() {
                 body: JSON.stringify(infoCheckout()),
             });
             const preference = await response.json();
+            window.location.href = preference.init_point;
             createCheckoutButton(preference.id);
         }catch(error){
             console.log(error);
@@ -58,7 +54,7 @@ const createCheckoutButton = (preference_id)=>{
 
     const bricksBuilder = mp.bricks();
 
-    const renderComponent = async ()=>{
+    const renderComponent = async function(){
         if(window.checkoutButton) window.checkoutButton.unmount();
         await bricksBuilder.create("wallet", "wallet_container", {
             initialization: {

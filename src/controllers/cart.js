@@ -23,7 +23,6 @@ export class cartController{
             res.status(200).json({message:"Ya está en el carrito"});
         }else{
         req.session.cart.push(req.body);
-        console.log(req.session.cart);
         res.status(200).json({message:"Agregado al carrito"});
         }
     }
