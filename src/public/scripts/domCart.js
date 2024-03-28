@@ -1,8 +1,6 @@
 const ul_selected_products = document.getElementById("list_products_selected");
 const span_total_cart_price = document.getElementById("total_cart_price");
-const button_buy = document.getElementById("button_buy");
 const cart_prices = [];
-
 
 function checkEmptyCart(data) {
     if (data.length == 0) {
@@ -14,7 +12,44 @@ function checkEmptyCart(data) {
     }
 }
 
+button_buy.addEventListener("click", function () {
+    checkout();
+});
 
+
+
+function infoCheckout() {
+    const inputs_quantities = document.querySelectorAll(".input_quantity");
+    const quantities = Array.from(inputs_quantities).map(function(input){return input.value});
+    const inputs_shipping = document.querySelectorAll(".input_shipping");
+    const shipping = Array.from(inputs_shipping).map(function(input){return input.value});
+    return {
+        //total: getFloatPrice(span_total_cart_price.textContent),
+        quantities:quantities,
+        //shipping:shipping
+
+   };
+}
+
+function checkout() {
+    if (getFloatPrice(span_total_cart_price.textContent) < 30000) {
+        button_buy.style.backgroundColor = "#cb3234";
+        button_buy.value = "Monto menor a 30000";
+        setTimeout(function () {
+            button_buy.style.backgroundColor = "#520000";
+            button_buy.value = "Comprar";
+        }, 2000);
+    } else {
+        console.log(infoForm());
+        console.log(JSON.stringify(infoForm()));
+        sendReq("/payment/", {
+            method:"POST",
+            headers: { "Content-Type": "application/json" },
+            body:JSON.stringify(infoCheckout()),
+        }).then(data=>{
+        });
+    }
+}
 
 sendReq("/cart/get", {
     method: "GET",
@@ -136,7 +171,7 @@ function showCart(data) {
         button_delete.type = "button";
         button_delete.value = "Quitar";
         input_quantity.type = "text";
-        input_quantity.id = "input_quantity";
+        input_quantity.classList.add("input_quantity");
         input_quantity.value = "0";
         input_quantity.readOnly = "true";
         bttn_increment_quantity.type = "button";

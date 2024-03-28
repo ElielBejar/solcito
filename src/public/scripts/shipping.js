@@ -2,6 +2,7 @@ const shippingOptions = document.getElementsByName("shipping");
 const info_transport  = document.getElementById("info_transport");
 const direction = document.getElementById("direction");
 
+
 shippingOptions.forEach(function(option){
     option.addEventListener("change", function(){
         switch(option.value){

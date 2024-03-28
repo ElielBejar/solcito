@@ -7,6 +7,7 @@ import {collectionsRouter} from "./routes/collections.js";
 import {stockRouter} from "./routes/stock.js";
 import {uploadsRouter} from "./routes/uploads.js"; 
 import {cartRouter} from "./routes/cart.js"
+import {paymentRouter} from "./routes/payment.js";
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import {PORT, HOST, USER, PASSWORD} from "./utils/config.js"
@@ -27,12 +28,14 @@ app.use("/collections", express.json());
 app.use("/stock", express.json());
 app.use("/cart", express.json());
 app.use("/admin", express.json());
+app.use("/payment", express.json());
 
 app.use("/uploads", uploadsRouter);
 app.use("/products", productsRouter);
 app.use("/collections", collectionsRouter);
 app.use("/stock", stockRouter);
 app.use("/cart", cartRouter);
+app.use("/payment", paymentRouter);
 
 app.get("/nav/:dir", (req, res)=>{
     res.sendFile(path.join(__dirname, "public", "client", `${req.params.dir}`));

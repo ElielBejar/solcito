@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="../styles/whatsapp.css">
     <link rel="stylesheet" href="../styles/cart.css">
     <link rel="stylesheet" href="../styles/footer.css">
+    <script src="https://sdk.mercadopago.com/js/v2">
+    </script>
 </head>
 
 <body>
@@ -75,19 +77,23 @@
                     <div class="info_transport" id="info_transport">
                         <form>
                             <label for="transport">Nombre del transporte:</label>
-                            <input type="text" id="transport">
+                            <input type="text" id="transport" class="input_shipping">
                             <label for="name">A nombre de quién va el pedido:</label>
-                            <input type="text" id="name">
+                            <input type="text" id="name" class="input_shipping">
+                            <label for="tel">Teléfono: </label>
+                            <input type="text" id="tel" class="input_shipping">
+                            <label for="email">Email: </label>
+                            <input type="email" id="email" class="input_shipping">
                             <label for="direction">Dirección: </label>
-                            <input type="text" id="direction">
+                            <input type="text" id="direction" class="input_shipping">
                             <label for="localidad">Localidad: </label>
-                            <input type="text" id="localidad">
+                            <input type="text" id="localidad" class="input_shipping">
                             <label for="provincia">Provincia: </label>
-                            <input type="text" id="provincia">
+                            <input type="text" id="provincia" class="input_shipping">
                             <label for="postal">Código postal:</label>
-                            <input type="text" id="postal">
+                            <input type="text" id="postal" class="input_shipping">
                             <label for="cuit_dni">Cuit o DNI:</label>
-                            <input type="text" id="cuit_dni">
+                            <input type="text" id="cuit_dni" class="input_shipping">
                         </form>
                     </div>
                 </div>
@@ -101,16 +107,10 @@
                     <span>Pedido: </span>
                     <span id="total_cart_price">$0</span>
                 </div>
-                <div class="transport_price">
-                    <span>Envío:</span>
-                    <span>$4000</span>
-                </div>
-                <div class="total_price">
-                    <span>Total:</span>
-                    <span>$27450</span>
-                </div>
                 <div class="buy_product">
                     <input type="button" value="Comprar" id="button_buy">
+                    <div id="wallet_container">
+                    </div>
                 </div>
             </div>
 
@@ -145,6 +145,7 @@
     <script src="../scripts/cart.js"></script>
     <script src="../scripts/domCart.js"></script>
     <script src="../scripts/shipping.js"></script>
+    <script src="../scripts/payment.js"></script>
 </body>
 
 </html>

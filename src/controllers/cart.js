@@ -5,7 +5,6 @@ function isProductAlreadySelected(cart, product){
                 p.print == product.print &&
                 p.size == product.size;
     });
-
     const result = product_found ? true : false;
     return result;
 }
@@ -21,7 +20,6 @@ export class cartController{
 
     static async addProduct(req, res){
         if(isProductAlreadySelected(req.session.cart, req.body)){
-            console.log("si");
             res.status(200).json({message:"Ya está en el carrito"});
         }else{
         req.session.cart.push(req.body);
