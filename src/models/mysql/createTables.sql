@@ -18,6 +18,33 @@ CREATE TABLE colecciones(
     img TEXT,
     date_created TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+/*states: reservado, pagado, entregado*/:
+CREATE TABLE pedidos(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    state VARCHAR(255) NOT NULL,
+    name VARCHAR(255) NOT NULL,
+    phone VARCHAR(255) NOT NULL, 
+    email VARCHAR(255) NOT NULL,
+    direction VARCHAR(255),
+    transport VARCHAR(255),
+    localidad VARCHAR(255),
+    provincia VARCHAR(255),
+    codigo_postal VARCHAR(255),
+    cuit_dni VARCHAR(255)
+);
+
+CREATE TABLE articulos_pedido(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_pedido INT,
+    img TEXT,
+    quantity INT UNSIGNED NOT NULL,
+    price DECIMAL NOT NULL
+);
+
+INSERT INTO pedidos (type, name, phone, email, direction, transport, localidad, provincia, codigo_postal, cuit_dni, pedido) VALUES
+    ('viacargo', 'Carlos Tassi', '1169956823', 'elielbejar12@gmail.com', 'manuelapedraza3016', 'viacargo', 'CABA', 'CABA', '1429', '45748541', '{"articulo":"articulo1", "importe":"$14290", "unidades":"4"}, 
+    {"articulo2":"articulo2", "importe":"$18290", "unidades":"10"}');
+
 
 CREATE TABLE stock(
     id INT AUTO_INCREMENT PRIMARY KEY,

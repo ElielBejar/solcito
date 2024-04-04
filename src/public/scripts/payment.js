@@ -34,28 +34,31 @@ async function checkout() {
         }, 2000);
     } else {
         try {
-            const response = await fetch("http://localhost:3000/payment", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(infoCheckout()),
-            });
-            const preference = await response.json();
-            window.location.href = preference.init_point;
-            createCheckoutButton(preference.id);
-        }catch(error){
+            if (requeiredShippingFields() == 0) {
+                const response = await fetch("http://localhost:3000/payment", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(infoCheckout()),
+                });
+                const preference = await response.json();
+                window.location.href = preference.init_point;
+                createCheckoutButton(preference.id);
+            }else{
+            }
+        } catch (error) {
             console.log(error);
         }
     }
 }
 
-const createCheckoutButton = (preference_id)=>{
+const createCheckoutButton = (preference_id) => {
 
     const bricksBuilder = mp.bricks();
 
-    const renderComponent = async function(){
-        if(window.checkoutButton) window.checkoutButton.unmount();
+    const renderComponent = async function () {
+        if (window.checkoutButton) window.checkoutButton.unmount();
         await bricksBuilder.create("wallet", "wallet_container", {
             initialization: {
                 preferenceId: preference_id,

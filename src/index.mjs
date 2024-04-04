@@ -8,6 +8,7 @@ import {stockRouter} from "./routes/stock.js";
 import {uploadsRouter} from "./routes/uploads.js"; 
 import {cartRouter} from "./routes/cart.js"
 import {paymentRouter} from "./routes/payment.js";
+import {mailRouter} from "./routes/mail.js";
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import {PORT, HOST, USER, PASSWORD} from "./utils/config.js"
@@ -36,6 +37,7 @@ app.use("/collections", collectionsRouter);
 app.use("/stock", stockRouter);
 app.use("/cart", cartRouter);
 app.use("/payment", paymentRouter);
+app.use("/mail", mailRouter);
 
 app.get("/nav/:dir", (req, res)=>{
     res.sendFile(path.join(__dirname, "public", "client", `${req.params.dir}`));

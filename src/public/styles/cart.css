@@ -107,6 +107,11 @@ main{
     border-bottom:solid 0.1em var(--guardsman-red-950); 
 }
 
+.message_required{
+    color:rgb(28, 29, 29);
+    font-size: 1em;
+}
+
 .min_cost, .order_price, .buy_product{
     display: flex;
     padding:1em;

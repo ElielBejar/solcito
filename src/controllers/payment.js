@@ -31,7 +31,6 @@ export class paymentController{
           };
           const preference = new Preference(client);
           const result = await preference.create({body});
-          console.log(result);
           res.json({
             id:result.id,
             init_point:result.init_point,

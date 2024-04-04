@@ -1,5 +1,6 @@
 const ul_selected_products = document.getElementById("list_products_selected");
 const span_total_cart_price = document.getElementById("total_cart_price");
+
 const cart_prices = [];
 
 function checkEmptyCart(data) {
@@ -24,26 +25,6 @@ function infoCheckout() {
         //shipping:shipping
 
    };
-}
-
-function checkout() {
-    if (getFloatPrice(span_total_cart_price.textContent) < 30000) {
-        button_buy.style.backgroundColor = "#cb3234";
-        button_buy.value = "Monto menor a 30000";
-        setTimeout(function () {
-            button_buy.style.backgroundColor = "#520000";
-            button_buy.value = "Comprar";
-        }, 2000);
-    } else {
-        console.log(infoForm());
-        console.log(JSON.stringify(infoForm()));
-        sendReq("/payment/", {
-            method:"POST",
-            headers: { "Content-Type": "application/json" },
-            body:JSON.stringify(infoCheckout()),
-        }).then(data=>{
-        });
-    }
 }
 
 sendReq("/cart/get", {
