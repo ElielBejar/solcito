@@ -35,10 +35,13 @@ CREATE TABLE pedidos(
 
 CREATE TABLE articulos_pedido(
     id INT AUTO_INCREMENT PRIMARY KEY,
-    id_pedido INT,
+    id_pedido INT UNSIGNED NOT NULL,
+    code INT UNSIGNED NOT NULL,
+    print INT UNSIGNED NOT NULL,
+    size VARCHAR(255),
     img TEXT,
     quantity INT UNSIGNED NOT NULL,
-    price DECIMAL NOT NULL
+    price VARCHAR(255) NOT NULL
 );
 
 INSERT INTO pedidos (type, name, phone, email, direction, transport, localidad, provincia, codigo_postal, cuit_dni, pedido) VALUES

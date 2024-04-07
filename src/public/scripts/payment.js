@@ -24,6 +24,15 @@ function infoCheckout() {
     };
 }
 
+function infoOrder(id_order){
+    const inputs_quantities = document.querySelectorAll(".input_quantity");
+    const quantities = Array.from(inputs_quantities).map(function (input) { return input.value });
+    return {
+        id_order:id_order,
+        quantities: quantities,
+    };
+}
+
 async function checkout() {
     if (getFloatPrice(span_total_cart_price.textContent) < 30000) {
         button_buy.style.backgroundColor = "#cb3234";
@@ -42,9 +51,26 @@ async function checkout() {
                     },
                     body: JSON.stringify(infoCheckout()),
                 });
+                const shipping_response = await fetch("http://localhost:3000/order/shipping", {
+                   method:"POST",
+                   headers:{
+                       "Content-Type":"application/json",
+                   },
+                   body:JSON.stringify(infoShippingForm()),
+                });
+                const res_id = await shipping_response.json();
+                console.log(res_id.order_id);
+                const response_order = await fetch("http://localhost:3000/order/order",{
+                    method:"POST",
+                    headers:{
+                        "Content-Type":"application/json",
+                    },
+                    body:JSON.stringify(infoOrder(res_id.order_id)),
+                });
+                const res_order = await response_order.json();
+                console.log(res_order);
                 const preference = await response.json();
-                window.location.href = preference.init_point;
-                createCheckoutButton(preference.id);
+               // window.location.href = preference.init_point;
             }else{
             }
         } catch (error) {

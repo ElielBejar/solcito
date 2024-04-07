@@ -98,3 +98,16 @@ form label, form input{
     text-align: center;
     flex-basis: 100%;
 }
+
+.button_orders{
+    margin:1em auto;
+    background-color: rgb(0, 88, 165);
+    width:10%;
+}
+
+.button_orders a{
+    padding:1em;
+    display: block;
+    color:rgb(255, 255, 255);
+    text-align: center;
+}

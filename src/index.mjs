@@ -9,6 +9,7 @@ import {uploadsRouter} from "./routes/uploads.js";
 import {cartRouter} from "./routes/cart.js"
 import {paymentRouter} from "./routes/payment.js";
 import {mailRouter} from "./routes/mail.js";
+import { orderRouter } from "./routes/order.js";
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import {PORT, HOST, USER, PASSWORD} from "./utils/config.js"
@@ -30,6 +31,7 @@ app.use("/stock", express.json());
 app.use("/cart", express.json());
 app.use("/admin", express.json());
 app.use("/payment", express.json());
+app.use("/order", express.json());
 
 app.use("/uploads", uploadsRouter);
 app.use("/products", productsRouter);
@@ -38,6 +40,7 @@ app.use("/stock", stockRouter);
 app.use("/cart", cartRouter);
 app.use("/payment", paymentRouter);
 app.use("/mail", mailRouter);
+app.use("/order", orderRouter);
 
 app.get("/nav/:dir", (req, res)=>{
     res.sendFile(path.join(__dirname, "public", "client", `${req.params.dir}`));
