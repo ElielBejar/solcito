@@ -7,6 +7,10 @@ const mp = new MercadoPago('TEST-5e3fbbc2-3e5d-4ca7-9e92-08a0bd167c9c', {
 
 button_buy.addEventListener("click", function () {
     checkout();
+    html_email = "<h1>Tu pedido está pendiente de aprobación</h1>" + 
+                 "<p>Revisaremos sus datos proporcionados, le avisaremos a la brevedad la confirmación del pedido," +
+                 " para mas información puede contactarse al: +54 9 11 3026-9534 o enviarnos un mail al: info@solcitoweb.com.ar</p>";
+    sendEmail(fields_contact[2].value, "Tu pedido está pendiente de aprobación", html_email);
 });
 
 
@@ -68,9 +72,8 @@ async function checkout() {
                     body:JSON.stringify(infoOrder(res_id.order_id)),
                 });
                 const res_order = await response_order.json();
-                console.log(res_order);
                 const preference = await response.json();
-               // window.location.href = preference.init_point;
+                window.location.href = preference.init_point;
             }else{
             }
         } catch (error) {

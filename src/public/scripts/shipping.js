@@ -23,6 +23,7 @@ function infoShippingForm(){
     }
 }
 
+
 shippingOptions.forEach(function (option) {
     option.addEventListener("change", function () {
         fields_shipping[0].value = "";

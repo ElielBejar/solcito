@@ -14,12 +14,28 @@ const transporter = nodemailer.createTransport({
 export class mailController {
     static async sendEmail(req, res) {
         const info = await transporter.sendMail({
-            from: '"SolcitoWeb" <elielbejar12@gmail.com>', // sender address
-            to: "elubejar66@gmail.com", // list of receivers
-            subject: "Hello ✔", // Subject line
+            from: `SolcitoWeb <${EMAIL}>`, // sender address
+            to: req.body.email, // list of receivers
+            subject: req.body.subject, // Subject line
+            text: "", // plain text body
+            html: req.body.html, 
+        });
+        console.log("Message sent: %s", info.messageId);
+        res.json(info);
+    }
+}
+
+/*export class mailController {
+    static async sendEmail(req, res) {
+        const info = await transporter.sendMail({
+            from: `SolcitoWeb <${EMAIL}>`, // sender address
+            to: req.body.email, // list of receivers
+            subject: "Tu pedido fue aceptado", // Subject line
             text: "Hello world?", // plain text body
-            html: "<b>Hello world?</b>", // html body
+            html: "<h1>Gracias por tu compra!</h1>" +
+                   "<p>Tu pedido en Solcito - Ropa y accesorios fue aceptado, " +
+                   "prepararemos tu pedido cuanto antes y te contactaremos a la brevedad!</p>", 
         });
         console.log("Message sent: %s", info.messageId);
     }
-}
+}*/

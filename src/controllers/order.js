@@ -30,4 +30,9 @@ export class orderController{
         const info = await orderModel.getShipping(id);
         res.json(info);
     }
+
+    static async changeState(req, res){
+        const info = await orderModel.changeState(req.params.id, req.params.state);
+        res.json(info);
+    }
 }

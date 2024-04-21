@@ -1,3 +1,12 @@
+sendReq("/admin/session", {
+    method: "GET",
+    headers: { "Content-Type": "application/json" }
+ }).then(data => {
+    if (data.login == "false") {
+        document.location.href = "../admin";
+    }
+ });
+
 const orders_table = document.getElementById("orders_table");
 
 async function getOrders(){
@@ -41,7 +50,13 @@ function showOrders(data) {
         td_phone.textContent = data[i].phone;
         td_email.textContent = data[i].email;
         td_state.textContent = data[i].state;
-        td_state.style.backgroundColor = "#E6C701";
+        if(data[i].state == "Pendiente"){
+            td_state.style.backgroundColor = "#E6C701";
+        }else if(data[i].state == "Aceptado"){
+            td_state.style.backgroundColor = "#00FF36";
+        }else{
+            td_state.style.backgroundColor = "#BD0909";
+        }
         td_open.appendChild(a_open);
 
         tr.appendChild(td_id);

@@ -7,6 +7,11 @@ export class StockModel{
         return info;
     }
 
+    static async getId(code, print, size){
+        const [info] = await connection.query("SELECT id FROM stock WHERE code = ? AND print_code = ? AND size = ?", [code, print, size]);
+        return info;
+    }
+
     static async getSizes(code, print){
         const [info] = await connection.query("SELECT id, size, quantity FROM stock WHERE code = ? AND print_code = ?", [code, print]);
         return info;

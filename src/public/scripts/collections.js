@@ -28,7 +28,6 @@ function isLogged() {
 button_login.addEventListener("click", function () {
     const user = input_user.value;
     const password = input_password.value;
-    console.log(JSON.stringify({ user, password }));
     sendReq("/admin/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },

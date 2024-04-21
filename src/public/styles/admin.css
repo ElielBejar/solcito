@@ -111,3 +111,29 @@ form label, form input{
     color:rgb(255, 255, 255);
     text-align: center;
 }
+
+.special_table{
+    margin:2em 0;
+}
+
+.order_actions{
+    display: flex;
+    justify-content: space-between;
+    width:90%;
+}
+
+.bttn_accept{
+    padding:1em;
+    background-color: rgb(2, 226, 255);
+    color:rgb(255, 255, 255);
+    cursor:pointer;
+    border:none;
+}
+
+.bttn_no_accept{
+    padding:1em;
+    background-color: rgb(165, 7, 7);
+    color:rgb(255, 255, 255);
+    cursor:pointer;
+    border:none;
+}

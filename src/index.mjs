@@ -32,6 +32,7 @@ app.use("/cart", express.json());
 app.use("/admin", express.json());
 app.use("/payment", express.json());
 app.use("/order", express.json());
+app.use("/mail", express.json());
 
 app.use("/uploads", uploadsRouter);
 app.use("/products", productsRouter);

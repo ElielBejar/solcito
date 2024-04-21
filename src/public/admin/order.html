@@ -7,7 +7,11 @@
     <link rel="stylesheet" href="../styles/admin.css">
 </head>
 <body>
-    <table>
+    <div class="order_actions">
+      <input type="button" value="Aceptar pedido" class="bttn_accept" id="bttn_accept">
+      <input type="button" value="Rechazar pedido" class="bttn_no_accept" id="bttn_no_accept">
+    </div>
+    <table class="special_table">
       <thead>
         <th>Nombre</th>
         <th>Teléfono</th>
@@ -21,19 +25,21 @@
       </thead>
       <tbody id="shipping_table"></tbody>
     </table>
-    <table>
+    <table class="special_table">
        <thead>
          <th>Código</th>
          <th>Estampa</th>
          <th>Talle</th>
-         <th>Imagen</th>
          <th>Cantidad</th>
          <th>Precio</th>
+         <th>Imagen</th>
        </thead>
        <tbody id="order_table">
 
        </tbody>
     </table>
+    <script src="../scripts/fetch.js"></script>
+    <script src="../scripts/mail.js"></script>
     <script src="../scripts/order.js"></script>
 </body>
 </html>

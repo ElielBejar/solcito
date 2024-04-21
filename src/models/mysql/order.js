@@ -21,15 +21,21 @@ export class orderModel{
        return info;
     }
 
-    static async getOrder(id){
+    static async getShipping(id){
        const sql = "SELECT * FROM pedidos WHERE id = ?";
        const [info] = await connection.query(sql, [id]);
        return info;
     }
 
-    static async getShipping(id){
+    static async getOrder(id){
         const sql = "SELECT * FROM articulos_pedido WHERE id_pedido = ?";
         const [info] = await connection.query(sql, [id]);
+        return info;
+    }
+
+    static async changeState(id, state){
+        const sql = "UPDATE pedidos SET state = ? WHERE id = ?";
+        const [info] = await connection.query(sql, [state, id]);
         return info;
     }
 

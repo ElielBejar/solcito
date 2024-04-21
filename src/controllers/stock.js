@@ -9,6 +9,11 @@ export class StockController {
         res.json(stock);
     }
 
+    static async getId(req, res){
+        const stock = await StockModel.getId(req.params.code, req.params.print, req.params.size);
+        res.json(stock);
+    }
+
     static async getBy(req, res) {
         let sizes;
         switch (true) {
@@ -38,8 +43,6 @@ export class StockController {
     }
 
     static async updateStock(req, res){
-        console.log(req.params.id);
-        console.log(req.body);
         const validStock = validatePartialStock(req.body);
         if(validStock.error){
             res.status(400).json({error:res.error});
