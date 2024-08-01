@@ -1,6 +1,6 @@
 import { MercadoPagoConfig, Preference } from 'mercadopago';
 
-const client = new MercadoPagoConfig({ accessToken: 'TEST-4198210971943585-032807-9ad024b328b110f3c68574e065003472-553899564' });
+const client = new MercadoPagoConfig({ accessToken: 'APP_USR-2397015293399379-073114-f835e6d67998e5e380c8f2282d73d6a3-1745620077' });
 
 function getFloatPrice(string_price) {
     return parseFloat(string_price.slice(1, string_price.length));
@@ -15,20 +15,21 @@ export class paymentController{
             items_cart.push({
                title:req.session.cart[i].name,
                quantity:Number(req.body.quantities[i]),
-               unit_price:Number(getFloatPrice(req.session.cart[i].price))
+               unit_price:Number(getFloatPrice(req.session.cart[i].price)),
+               currency_id:"ARS",
             });
         }
-
         try{
           const body = {
             items:items_cart,
             back_urls:{
-                success:"https://www.youtube.com/",
-                failure:"https://www.youtube.com/",
-                pending:"https://www.youtube.com/",
+                success:"http://localhost:3000/nav/order_state.html?state=success",
+                failure:"http://localhost:3000/nav/order_state.html?state=failure",
+                pending:"http://localhost:3000/nav/order_state.html?state=pending",
             },
             auto_return:"approved",
           };
+          req.session.cart = [];
           const preference = new Preference(client);
           const result = await preference.create({body});
           res.json({

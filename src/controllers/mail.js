@@ -1,6 +1,13 @@
 import nodemailer from "nodemailer";
 import {EMAIL, PASSWORD_EMAIL} from "../utils/config.js";
 
+function checkEmail(email) {
+    if(email == null){
+        email = EMAIL;
+    }
+    return email;
+}
+
 const transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
     port: 465,
@@ -13,9 +20,10 @@ const transporter = nodemailer.createTransport({
 
 export class mailController {
     static async sendEmail(req, res) {
+        let email = checkEmail(req.body.email);
         const info = await transporter.sendMail({
             from: `SolcitoWeb <${EMAIL}>`, // sender address
-            to: req.body.email, // list of receivers
+            to: email, // list of receivers
             subject: req.body.subject, // Subject line
             text: "", // plain text body
             html: req.body.html, 

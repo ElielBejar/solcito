@@ -1,16 +1,16 @@
 const button_buy = document.getElementById("button_buy");
 
-const mp = new MercadoPago('TEST-5e3fbbc2-3e5d-4ca7-9e92-08a0bd167c9c', {
+const mp = new MercadoPago('APP_USR-9c12d82f-25b2-4245-806c-68bdad2c6a3e', {
     locale: 'es-AR'
 });
 
 
 button_buy.addEventListener("click", function () {
     checkout();
-    html_email = "<h1>Tu pedido está pendiente de aprobación</h1>" + 
+    /*html_email = "<h1>Tu pedido está pendiente de aprobación</h1>" + 
                  "<p>Revisaremos sus datos proporcionados, le avisaremos a la brevedad la confirmación del pedido," +
                  " para mas información puede contactarse al: +54 9 11 3026-9534 o enviarnos un mail al: info@solcitoweb.com.ar</p>";
-    sendEmail(fields_contact[2].value, "Tu pedido está pendiente de aprobación", html_email);
+    sendEmail(fields_contact[2].value, "Tu pedido está pendiente de aprobación", html_email);*/
 });
 
 
@@ -73,8 +73,15 @@ async function checkout() {
                 });
                 const res_order = await response_order.json();
                 const preference = await response.json();
+
+                mp.bricks().create("wallet", "wallet_container", {
+                    initialization: {
+                        preferenceId: preference.id,
+                    },
+                  });
+                
+                sendEmail(null, "Nuevo Pedido!", "");
                 window.location.href = preference.init_point;
-            }else{
             }
         } catch (error) {
             console.log(error);

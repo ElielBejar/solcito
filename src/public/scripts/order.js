@@ -17,7 +17,7 @@ const shipping_table = document.getElementById("shipping_table");
 const order_table = document.getElementById("order_table");
 const bttn_accept = document.getElementById("bttn_accept");
 const bttn_no_accept = document.getElementById("bttn_no_accept");
-const email = "";
+let email = "";
 
 const code_products = [];
 const print_products = [];
@@ -37,9 +37,11 @@ bttn_accept.addEventListener("click", function(){
 });
 bttn_no_accept.addEventListener("click", function(){
     changeState(id_param, 'Rechazado');
+    if(confirm("¿Deseas enviar un email al usuario con el rechazo de la confirmación?")){
     const html_rechazado = "<h1>Tu pedido fue rechazado</h1><p>Parece que hay un problema con los datos que proporcionaste o un problema de stock, " + 
                            "para mas información puede contactarnos al +54 9 11 3026-9534 o puede enviarnos un mail: info@solcitoweb.com.ar</p>";
     sendEmail(email, "Tu pedido fue rechazado", html_rechazado);
+    }
 });
 
 async function updateStock(code, print, size, quantity){

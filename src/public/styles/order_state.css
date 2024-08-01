@@ -1,0 +1,7 @@
+.order_state{
+    width:90%;
+    margin:1rem;
+    border-radius:2%;
+    color:var(--guardsman-red-950);
+    padding:1rem;
+}
