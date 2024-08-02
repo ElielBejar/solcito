@@ -39,4 +39,8 @@ export class orderModel{
         return info;
     }
 
+    static async deleteOrder(id){
+        return await connection.query("DELETE FROM pedidos WHERE id = ?", [id]);
+    }
+
 }

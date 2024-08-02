@@ -9,6 +9,28 @@ sendReq("/admin/session", {
 
 const orders_table = document.getElementById("orders_table");
 
+function deleteOrder(id){
+    sendReq(`/order/${id}`, {
+        method:"DELETE"
+    });
+    location.reload();
+ }
+
+function addDeleteButton(tr, data){
+   const td_deleteButton = document.createElement("td");
+   const deleteButton = document.createElement("input");
+   deleteButton.type = "button";
+   deleteButton.value = "Eliminar";
+
+   deleteButton.addEventListener("click", function(){
+      deleteOrder(data.id);
+   });
+
+   td_deleteButton.appendChild(deleteButton);
+   tr.appendChild(td_deleteButton);
+
+}
+
 async function getOrders(){
     try {
     
@@ -65,6 +87,10 @@ function showOrders(data) {
         tr.appendChild(td_email);
         tr.appendChild(td_state);
         tr.appendChild(td_open);
+
+        if(data[i].state != "Pendiente"){
+            addDeleteButton(tr, data[i]);
+        }
         
         orders_table.appendChild(tr);
     }

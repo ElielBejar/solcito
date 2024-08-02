@@ -1,5 +1,7 @@
 let order = "cheap";
 let groups = [];
+let page = 0;
+
 const orderSelection = document.getElementById("order_by").addEventListener("change", setOrder);
 const checkboxes = document.querySelectorAll("input[type=checkbox]");
 

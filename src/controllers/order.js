@@ -35,4 +35,8 @@ export class orderController{
         const info = await orderModel.changeState(req.params.id, req.params.state);
         res.json(info);
     }
+
+    static async deleteOrder(req, res){
+        await orderModel.deleteOrder(req.params.id);
+    }
 }
