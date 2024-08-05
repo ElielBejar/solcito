@@ -1,18 +1,19 @@
 import {connection} from "./connection.js";
-function sqlOrder(order){
+import {PAGE_SIZE} from  "../../utils/config.js";
+function sqlOrder(order, page){
     let sql = "";
     switch(order){
         case "cheap":
-            sql = " ORDER BY price ASC";
+            sql = ` ORDER BY price ASC LIMIT ${PAGE_SIZE} OFFSET ${page}`;
             break;
         case "expensive": 
-            sql = " ORDER BY price DESC";
+            sql = ` ORDER BY price DESC LIMIT ${PAGE_SIZE} OFFSET ${page}`;
             break;
         case "recently":
-            sql = " ORDER BY date_created DESC";
+            sql = ` ORDER BY date_created DESC LIMIT ${PAGE_SIZE} OFFSET ${page}`;
             break;
         case "trend": 
-            sql = " ORDER BY price ASC";
+            sql = ` ORDER BY price ASC LIMIT ${PAGE_SIZE} OFFSET ${page}`;
     }
     return sql;
 }
@@ -24,13 +25,13 @@ export class ProductsModel {
        return info;
     }
     
-    static async getByOrder(order) {
-        return await this.executeQuery("SELECT * FROM articulos WHERE print_code = 1"+sqlOrder(order), []);
+    static async getByOrder(order, page) {
+        return await this.executeQuery("SELECT * FROM articulos WHERE print_code = 1"+sqlOrder(order, page), []);
     }
 
-    static async getByFilter(order, groups){
+    static async getByFilter(order, groups, page){
         const placeholders = groups.map(() => '?').join(',');
-        return await this.executeQuery(`SELECT * FROM articulos WHERE print_code = 1 AND group_code IN (${placeholders})` + sqlOrder(order), groups);
+        return await this.executeQuery(`SELECT * FROM articulos WHERE print_code = 1 AND group_code IN (${placeholders})` + sqlOrder(order, page), groups);
     }
 
     static async getByCollectionCode(collection_code){

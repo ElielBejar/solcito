@@ -92,7 +92,11 @@ function showCollections(data) {
         img_collection.src = data[i].img;
         btn_delete.type = "button";
         btn_delete.value = "Borrar";
-        btn_delete.addEventListener("click", function () { deleteCollection(data[i].colection_code) });
+        btn_delete.addEventListener("click", function () {
+            if (confirm("¿Estás seguro que querés borrar la colección?")) {
+                deleteCollection(data[i].colection_code);
+            }
+        });
         link_collection.href = `./products.html?collection=${data[i].colection_code}`;
         link_collection.textContent = "Abrir";
 
@@ -115,5 +119,5 @@ function deleteCollection(collection_code) {
     sendReq(`/collections/${collection_code}`, {
         method: "DELETE"
     });
-    location.reload();  
+    location.reload();
 }

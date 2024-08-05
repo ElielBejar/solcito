@@ -8,10 +8,10 @@ export class ProductsController{
       //el operador !! se usa para que se evalue el switch de forma booleana y funcione
       switch(true){
          case !!req.params.order:
-            products = await ProductsModel.getByOrder(req.params.order);
+            products = await ProductsModel.getByOrder(req.params.order, req.params.page);
             break;
          case !!(req.body.order && req.body.groups):
-            products = await ProductsModel.getByFilter(req.body.order, req.body.groups);
+            products = await ProductsModel.getByFilter(req.body.order, req.body.groups, req.body.page);
             break;
          case !!req.params.collection_code: 
             products = await ProductsModel.getByCollectionCode(req.params.collection_code);

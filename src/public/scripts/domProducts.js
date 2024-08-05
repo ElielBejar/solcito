@@ -9,7 +9,6 @@ function removeProducts() {
 
 
 function showProducts(data) {
-   removeProducts();
    for (let i = 0; i < data.length; i++) {
       const product = document.createElement("div");
    const link_product = document.createElement("a");

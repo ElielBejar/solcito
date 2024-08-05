@@ -1,39 +1,41 @@
 sendReq("/admin/session", {
     method: "GET",
     headers: { "Content-Type": "application/json" }
- }).then(data => {
+}).then(data => {
     if (data.login == "false") {
         document.location.href = "../admin";
     }
- });
+});
 
 const orders_table = document.getElementById("orders_table");
 
-function deleteOrder(id){
+function deleteOrder(id) {
     sendReq(`/order/${id}`, {
-        method:"DELETE"
+        method: "DELETE"
     });
     location.reload();
- }
+}
 
-function addDeleteButton(tr, data){
-   const td_deleteButton = document.createElement("td");
-   const deleteButton = document.createElement("input");
-   deleteButton.type = "button";
-   deleteButton.value = "Eliminar";
+function addDeleteButton(tr, data) {
+    const td_deleteButton = document.createElement("td");
+    const deleteButton = document.createElement("input");
+    deleteButton.type = "button";
+    deleteButton.value = "Eliminar";
 
-   deleteButton.addEventListener("click", function(){
-      deleteOrder(data.id);
-   });
+    deleteButton.addEventListener("click", function () {
+        if (confirm("¿Estás seguro que querés borrar esta orden?")) {
+            deleteOrder(data.id);
+        }
+    });
 
-   td_deleteButton.appendChild(deleteButton);
-   tr.appendChild(td_deleteButton);
+    td_deleteButton.appendChild(deleteButton);
+    tr.appendChild(td_deleteButton);
 
 }
 
-async function getOrders(){
+async function getOrders() {
     try {
-    
+
         const response_orders = await fetch("http://localhost:3000/order", {
             method: "GET",
             headers: {
@@ -41,10 +43,10 @@ async function getOrders(){
             },
         });
         const orders = await response_orders.json();
-    
+
         showOrders(orders);
-    }catch(error){
-       console.log(error);
+    } catch (error) {
+        console.log(error);
     }
 }
 
@@ -52,7 +54,7 @@ getOrders();
 
 function showOrders(data) {
 
-    for (let i = (data.length-1); i >= 0; i--) {
+    for (let i = (data.length - 1); i >= 0; i--) {
         const tr = document.createElement("tr");
 
         const td_id = document.createElement("td");
@@ -72,11 +74,11 @@ function showOrders(data) {
         td_phone.textContent = data[i].phone;
         td_email.textContent = data[i].email;
         td_state.textContent = data[i].state;
-        if(data[i].state == "Pendiente"){
+        if (data[i].state == "Pendiente") {
             td_state.style.backgroundColor = "#E6C701";
-        }else if(data[i].state == "Aceptado"){
+        } else if (data[i].state == "Aceptado") {
             td_state.style.backgroundColor = "#00FF36";
-        }else{
+        } else {
             td_state.style.backgroundColor = "#BD0909";
         }
         td_open.appendChild(a_open);
@@ -88,10 +90,10 @@ function showOrders(data) {
         tr.appendChild(td_state);
         tr.appendChild(td_open);
 
-        if(data[i].state != "Pendiente"){
+        if (data[i].state != "Pendiente") {
             addDeleteButton(tr, data[i]);
         }
-        
+
         orders_table.appendChild(tr);
     }
 }

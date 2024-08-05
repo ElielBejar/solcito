@@ -13,7 +13,7 @@ sendReq("/admin/session", {
    headers: { "Content-Type": "application/json" }
 }).then(data => {
    if (data.login == "false") {
-       document.location.href = "../admin";
+      document.location.href = "../admin";
    }
 });
 
@@ -56,16 +56,16 @@ button_create.addEventListener("click", function () {
 });
 
 //te devuelve el texto de la categoría según el grupo de un articulo
-function group_dictionary(group){
+function group_dictionary(group) {
    let group_text = "";
-   switch(group){
-      case 3: group_text = "Recién nacidos";break;
-      case 318: group_text = "De 3 a 18 meses";break
-      case 140: group_text = "De 1 a 4 años varón";break;
-      case 141: group_text = "De 1 a 4 años nena";break;
-      case 4160: group_text = "De 4 a 16 años varón";break;
-      case 4161: group_text = "De 4 a 16 años nena";break;
-      case 1: group_text = "Accesorios";break;
+   switch (group) {
+      case 3: group_text = "Recién nacidos"; break;
+      case 318: group_text = "De 3 a 18 meses"; break
+      case 140: group_text = "De 1 a 4 años varón"; break;
+      case 141: group_text = "De 1 a 4 años nena"; break;
+      case 4160: group_text = "De 4 a 16 años varón"; break;
+      case 4161: group_text = "De 4 a 16 años nena"; break;
+      case 1: group_text = "Accesorios"; break;
       default: group_text = "Error";
    }
    return group_text;
@@ -97,8 +97,10 @@ function showProducts(data) {
 
       button_delete.type = "button";
       button_delete.value = "Borrar";
-      button_delete.addEventListener("click", function(){
-          deleteProduct(data[i].id);
+      button_delete.addEventListener("click", function () {
+         if (confirm("¿Estás seguro que querés borrar esta orden?")) {
+            deleteProduct(data[i].id);
+         }
       });
 
       img_product.src = data[i].img;
@@ -122,9 +124,9 @@ function showProducts(data) {
    }
 }
 
-function deleteProduct(id){
+function deleteProduct(id) {
    sendReq(`/products/${id}`, {
-       method:"DELETE"
+      method: "DELETE"
    });
    location.reload();
 }
