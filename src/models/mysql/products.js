@@ -2,18 +2,19 @@ import {connection} from "./connection.js";
 import {PAGE_SIZE} from  "../../utils/config.js";
 function sqlOrder(order, page){
     let sql = "";
+    let offset = page*PAGE_SIZE;
     switch(order){
         case "cheap":
-            sql = ` ORDER BY price ASC LIMIT ${PAGE_SIZE} OFFSET ${page}`;
+            sql = ` ORDER BY price ASC LIMIT ${PAGE_SIZE} OFFSET ${offset}`;
             break;
         case "expensive": 
-            sql = ` ORDER BY price DESC LIMIT ${PAGE_SIZE} OFFSET ${page}`;
+            sql = ` ORDER BY price DESC LIMIT ${PAGE_SIZE} OFFSET ${offset}`;
             break;
         case "recently":
-            sql = ` ORDER BY date_created DESC LIMIT ${PAGE_SIZE} OFFSET ${page}`;
+            sql = ` ORDER BY date_created DESC LIMIT ${PAGE_SIZE} OFFSET ${offset}`;
             break;
         case "trend": 
-            sql = ` ORDER BY price ASC LIMIT ${PAGE_SIZE} OFFSET ${page}`;
+            sql = ` ORDER BY price ASC LIMIT ${PAGE_SIZE} OFFSET ${offset}`;
     }
     return sql;
 }

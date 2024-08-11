@@ -2,7 +2,7 @@
   "name": "solcito",
   "version": "1.0.0",
   "description": "ecommerce solcito",
-  "main": "server/app.mjs",
+  "main": "./src/index.mjs",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

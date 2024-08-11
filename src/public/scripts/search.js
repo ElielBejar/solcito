@@ -1,24 +1,26 @@
 const text_search = document.getElementById("text_search");
 const list_results = document.getElementById("list_results");
 
-text_search.addEventListener("keyup", findResults);
+text_search.addEventListener("keyup", function(){
+    findResults();
+});
 
 //repitiendo codigo del domProducts
-function removeResults(){
-    while(list_results.firstChild){
+function removeResults() {
+    while (list_results.firstChild) {
         list_results.removeChild(list_results.firstChild);
     }
 }
 
 //reutilizando codigo del domProducts, mejorar despues
-function showListResult(data){
-    
+function showListResult(data) {
+
     removeResults();
 
-    for(let i = 0; i<data.length; i++){
+    for (let i = 0; i < data.length; i++) {
         const li_result = document.createElement("li");
         const a_result = document.createElement("a");
-        
+
         a_result.textContent = data[i].name;
         a_result.href = `http://localhost:3000/nav/product.html?code=${data[i].code}&print_code=${data[i].print_code}`;
 
@@ -27,16 +29,17 @@ function showListResult(data){
     }
 }
 
-function findResults(){
+function findResults() {
+    console.log("entro en findresults");
     const text = text_search.value;
-    if(text != ""){
-    sendReq(`/products/search/${text}`, {
-        method:"GET",
-        headers:{"Content-Type": "application/json"},
-    }).then(data => {
-        showListResult(data);
-    });
-   }else{
-     removeResults();
-   }
+    if (text != "" && text.length >= 3) {
+        sendReq(`/products/search/${text}`, {
+            method: "GET",
+            headers: { "Content-Type": "application/json" },
+        }).then(data => {
+            showListResult(data);
+        });
+    } else {
+        removeResults();
+    }
 }

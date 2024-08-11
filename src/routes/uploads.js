@@ -6,3 +6,4 @@ const upload = multer({ dest:"uploads/"});
 export const uploadsRouter = Router();
 
 uploadsRouter.post("/:type", upload.single('img'), UploadsController.uploadImg);
+uploadsRouter.delete("/:type/:imgName", UploadsController.deleteImg);

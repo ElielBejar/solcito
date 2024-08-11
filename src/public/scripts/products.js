@@ -98,8 +98,9 @@ function showProducts(data) {
       button_delete.type = "button";
       button_delete.value = "Borrar";
       button_delete.addEventListener("click", function () {
-         if (confirm("¿Estás seguro que querés borrar esta orden?")) {
-            deleteProduct(data[i].id);
+         if (confirm("¿Estás seguro que querés borrar este producto?")) {
+            let imgName = findFileName(data[i].img);
+            deleteProduct(data[i].id, imgName);
          }
       });
 
@@ -124,10 +125,20 @@ function showProducts(data) {
    }
 }
 
-function deleteProduct(id) {
+//esta función la hago para extraer solo el nombre de la imagen de todo el path
+function findFileName(path){
+   let indexBarra = path.lastIndexOf("/");
+   let fileName = path.substring((indexBarra+1), path.length);
+   return fileName;
+}
+
+function deleteProduct(id, imgName) {
+   let type = "products";
    sendReq(`/products/${id}`, {
       method: "DELETE"
-   });
+   }).then(sendReq(`/uploads/${type}/${imgName}`, {
+      method: "DELETE",
+   }));
    location.reload();
 }
 

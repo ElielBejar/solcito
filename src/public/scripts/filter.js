@@ -37,7 +37,7 @@ function setGroups() {
 //de como se usa el filtro
 function setRoute(){
    if(groups.length === 0){
-      route = `/products/${order}/${page}`;
+      route = `/products/order/${order}/${page}`;
       conf = {
         method: "GET",
         headers: { "Content-Type": "application/json" }
@@ -53,6 +53,7 @@ function setRoute(){
 }
 
 function filter(){
+    console.log("filtro");
     setRoute();
     sendReq(route, conf).then(data=>{
         showProducts(data);
