@@ -1,9 +1,22 @@
 const button_buy = document.getElementById("button_buy");
 
-const mp = new MercadoPago('APP_USR-9c12d82f-25b2-4245-806c-68bdad2c6a3e', {
-    locale: 'es-AR'
-});
+let mp;
 
+async function getPublicKey() {
+    console.log("PASA POR PUBLIC KEY");
+    const response = await fetch(`${BASE_ROUTE}/payment/`, {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+    });
+    
+    const data = await response.json();
+    const publicKey = data.publicKey;
+    mp = new MercadoPago(publicKey, {
+        locale: 'es-AR'
+    });
+}
+
+getPublicKey();
 
 button_buy.addEventListener("click", function () {
     checkout();
@@ -28,19 +41,25 @@ function infoCheckout() {
     };
 }
 
-function infoOrder(id_order){
+function infoOrder(id_order) {
     const inputs_quantities = document.querySelectorAll(".input_quantity");
     const quantities = Array.from(inputs_quantities).map(function (input) { return input.value });
     return {
-        id_order:id_order,
+        id_order: id_order,
         quantities: quantities,
     };
 }
 
 async function checkout() {
-    if (getFloatPrice(span_total_cart_price.textContent) < 30000) {
+    const min_amount_response = await fetch(`${BASE_ROUTE}/minamount`, {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+    });
+    const min_amount_json = await min_amount_response.json();
+    const min_amount = min_amount_json.minAmount;
+    if (getFloatPrice(span_total_cart_price.textContent) < min_amount) {
         button_buy.style.backgroundColor = "#cb3234";
-        button_buy.value = "Monto menor a 30000";
+        button_buy.value = `Monto menor a ${min_amount}`;
         setTimeout(function () {
             button_buy.style.backgroundColor = "#520000";
             button_buy.value = "Comprar";
@@ -48,28 +67,27 @@ async function checkout() {
     } else {
         try {
             if (requeiredShippingFields() == 0) {
-                const response = await fetch("http://localhost:3000/payment", {
+                const response = await fetch(`${BASE_ROUTE}/payment`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
                     },
                     body: JSON.stringify(infoCheckout()),
                 });
-                const shipping_response = await fetch("http://localhost:3000/order/shipping", {
-                   method:"POST",
-                   headers:{
-                       "Content-Type":"application/json",
-                   },
-                   body:JSON.stringify(infoShippingForm()),
+                const shipping_response = await fetch(`${BASE_ROUTE}/order/shipping`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(infoShippingForm()),
                 });
                 const res_id = await shipping_response.json();
-                console.log(res_id.order_id);
-                const response_order = await fetch("http://localhost:3000/order/order",{
-                    method:"POST",
-                    headers:{
-                        "Content-Type":"application/json",
+                const response_order = await fetch(`${BASE_ROUTE}/order/order`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
                     },
-                    body:JSON.stringify(infoOrder(res_id.order_id)),
+                    body: JSON.stringify(infoOrder(res_id.order_id)),
                 });
                 const res_order = await response_order.json();
                 const preference = await response.json();
@@ -78,8 +96,8 @@ async function checkout() {
                     initialization: {
                         preferenceId: preference.id,
                     },
-                  });
-                
+                });
+
                 sendEmail(null, "Nuevo Pedido!", "");
                 window.location.href = preference.init_point;
             }

@@ -53,7 +53,6 @@ function setRoute(){
 }
 
 function filter(){
-    console.log("filtro");
     setRoute();
     sendReq(route, conf).then(data=>{
         showProducts(data);

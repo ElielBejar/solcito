@@ -36,7 +36,7 @@ function addDeleteButton(tr, data) {
 async function getOrders() {
     try {
 
-        const response_orders = await fetch("http://localhost:3000/order", {
+        const response_orders = await fetch(`${BASE_ROUTE}/order`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -66,7 +66,7 @@ function showOrders(data) {
 
         const a_open = document.createElement("a");
         a_open.textContent = "Ver pedido";
-        a_open.href = `http://localhost:3000/admin/order.html?id=${data[i].id}`;
+        a_open.href = `${BASE_ROUTE}/admin/order.html?id=${data[i].id}`;
 
 
         td_id.textContent = data[i].id;

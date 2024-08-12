@@ -20,9 +20,8 @@ function showListResult(data) {
     for (let i = 0; i < data.length; i++) {
         const li_result = document.createElement("li");
         const a_result = document.createElement("a");
-
         a_result.textContent = data[i].name;
-        a_result.href = `http://localhost:3000/nav/product.html?code=${data[i].code}&print_code=${data[i].print_code}`;
+        a_result.href = `${BASE_ROUTE}/nav/product.html?code=${data[i].code}&print_code=${data[i].print_code}`;
 
         list_results.appendChild(li_result);
         li_result.appendChild(a_result);

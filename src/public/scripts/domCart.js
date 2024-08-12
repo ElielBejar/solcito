@@ -37,11 +37,18 @@ sendReq("/cart/get", {
 });
 
 function deleteProduct(li, index) {
-    sendReq(`/cart/${index}`, {
+    const selected_products = Array.from(ul_selected_products.getElementsByTagName("li"));
+    const realIndex = selected_products.indexOf(li);
+    sendReq(`/cart/${realIndex}`, {
         method: "DELETE",
     }).then(data => {
+        console.log(data.cart.length);
         ul_selected_products.removeChild(li);
-        cart_prices.splice(index, 1);
+        console.log(`Real index es: ${realIndex}`);
+        console.log(cart_prices);
+        cart_prices.splice(realIndex, 1);
+        console.log(cart_prices);
+        span_total_cart_price.textContent = `$${cart_prices.reduce((total, element) => total + element, 0)}`;
         if (ul_selected_products.childNodes.length == 0) {
             ul_selected_products.textContent = "Aún no hay nada en el carrito";
             button_buy.style.display = "none";
@@ -157,7 +164,7 @@ function showCart(data) {
 
         button_delete.addEventListener("click", function () {
             deleteProduct(li, i);
-            span_total_cart_price.textContent = `$${cart_prices.reduce((total, element) => total + element, 0)}`;
+            //span_total_cart_price.textContent = `$${cart_prices.reduce((total, element) => total + element, 0)}`;
         });
 
         checkIncreaseStock(input_quantity, data[i], i);
@@ -187,7 +194,7 @@ function showCart(data) {
         div_tools.appendChild(bttn_increment_quantity);
         div_tools.appendChild(input_quantity);
         div_tools.appendChild(bttn_decrement_quantity);
-
+ 
         li.classList.add("product_on_list");
         li.appendChild(div_img);
         li.appendChild(div_info);

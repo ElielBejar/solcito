@@ -1,12 +1,18 @@
 import { MercadoPagoConfig, Preference } from 'mercadopago';
+import { MERCADOPAGO_API_KEY, MERCADOPAGO_PUBLIC_KEY } from '../utils/config.js';
 
-const client = new MercadoPagoConfig({ accessToken: 'APP_USR-2397015293399379-073114-f835e6d67998e5e380c8f2282d73d6a3-1745620077' });
+
+const client = new MercadoPagoConfig({ accessToken: `${MERCADOPAGO_API_KEY}` });
 
 function getFloatPrice(string_price) {
     return parseFloat(string_price.slice(1, string_price.length));
 }
 
 export class paymentController{
+
+    static async getPublicKey(req, res){
+        res.json({publicKey:`${MERCADOPAGO_PUBLIC_KEY}`});
+    }
 
     static async createOrder(req, res){
 
@@ -29,7 +35,7 @@ export class paymentController{
             },
             auto_return:"approved",
           };
-          req.session.cart = [];
+          //req.session.cart = [];
           const preference = new Preference(client);
           const result = await preference.create({body});
           res.json({

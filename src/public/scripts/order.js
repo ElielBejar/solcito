@@ -45,18 +45,18 @@ bttn_no_accept.addEventListener("click", function(){
 });
 
 async function updateStock(code, print, size, quantity){
-    const id_response = await fetch(`http://localhost:3000/stock/id/${code}/${print}/${size}`, {
+    const id_response = await fetch(`${BASE_ROUTE}/stock/id/${code}/${print}/${size}`, {
         method:"GET",
         headers: { "Content-Type": "application/json" },
     });
-    const quantity_response = await fetch(`http://localhost:3000/stock/${code}/${print}/${size}`, {
+    const quantity_response = await fetch(`${BASE_ROUTE}/stock/${code}/${print}/${size}`, {
         method:"GET",
         headers: { "Content-Type": "application/json" },
     });
     const id_info = await id_response.json();
     const quantity_info = await quantity_response.json();
     const new_quantity = quantity_info[0].quantity - quantity;
-    const updateResponse = await fetch(`http://localhost:3000/stock/${id_info[0].id}`, {
+    const updateResponse = await fetch(`${BASE_ROUTE}/stock/${id_info[0].id}`, {
         method:"PATCH",
         headers: { "Content-Type": "application/json" },
         body:JSON.stringify({code:code, print:print, size:size, quantity:new_quantity}),
@@ -66,14 +66,14 @@ async function updateStock(code, print, size, quantity){
 }
 
 async function getOrder(id) {
-    const shipping_response = await fetch(`http://localhost:3000/order/shipping/${id}`, {
+    const shipping_response = await fetch(`${BASE_ROUTE}/order/shipping/${id}`, {
         method: "GET",
         headers: { "Content-Type": "application/json" },
     });
 
     const shipping_info = await shipping_response.json();
 
-    const order_response = await fetch(`http://localhost:3000/order/${id}`, {
+    const order_response = await fetch(`${BASE_ROUTE}/order/${id}`, {
         method: "GET",
         headers: { "Content-Type": "application/json" },
     });
@@ -90,7 +90,7 @@ async function getOrder(id) {
 }
 
 async function changeState(id, state){
-    const response = await fetch(`http://localhost:3000/order/status/${id}/${state}`, {
+    const response = await fetch(`${BASE_ROUTE}/order/status/${id}/${state}`, {
         method:"PATCH",
         headers:{"Content-Type":"application/json"},
     });

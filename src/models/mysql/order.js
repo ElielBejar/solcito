@@ -11,6 +11,7 @@ export class orderModel{
     }
 
     static async insertArticle(article, quantity, id_order){
+       console.log("estoy en insert article del model");
        const sql = "INSERT INTO articulos_pedido (id_pedido, code, print, size, img, quantity, price) VALUES (?, ?, ?, ?, ?, ?, ?)";
        await connection.query(sql, [id_order, article.code_article, article.print, article.size, article.img, quantity, article.price]);
     }

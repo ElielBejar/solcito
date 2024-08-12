@@ -1,3 +1,5 @@
+//importScripts('./fetch.js');
+
 const products_container = document.getElementById("products_container");
 
 // Eliminar todos los nodos hijos
@@ -19,7 +21,7 @@ function showProducts(data) {
    const price = document.createElement("span");
 
    product.classList.add("product");
-   link_product.href = `http://localhost:3000/nav/product.html?code=${data[i].code}&print_code=${data[i].print_code}`;
+   link_product.href = `${BASE_ROUTE}/nav/product.html?code=${data[i].code}&print_code=${data[i].print_code}`;
    img_product.classList.add("img_product");
    img.src = `${data[i].img}`;
    info_product.classList.add("info_product");

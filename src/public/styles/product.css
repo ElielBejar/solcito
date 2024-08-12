@@ -102,6 +102,12 @@
     user-select: none;
 }
 
+.btn_added_cart{
+    background-color: #085801;
+    color:white;
+    cursor: auto;
+}
+
 .sizes_product ul .onstock:hover, .size_selected{
     background-color:var(--guardsman-red-950);
     color:var(--guardsman-red-50);

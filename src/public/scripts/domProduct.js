@@ -50,6 +50,10 @@ function sizeEvent(element_selected) {
     //size_selected = element_selected.textContent;
     if (!is_size_selected) {
         is_size_selected = true;
+        if(btn_add_cart.classList.contains("btn_added_cart")){
+            replaceClass(btn_add_cart, "btn_yes_stock", "btn_added_cart");
+            btn_add_cart.value = "Agregar al carrito";
+        }
         setAddCart();
     }
 }
@@ -76,7 +80,6 @@ function showSizes(data) {
     }
     const options = document.querySelectorAll(".offstock");
     if (options.length == data.length) {
-        console.log("data");
         btn_add_cart.value = "Sin stock";
     }
     //setAddCart();
@@ -113,10 +116,11 @@ function addCart() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(infoProduct())
     }).then(data => {
-        console.log(data);
-        btn_add_cart.style.backgroundColor = "#085801";
+        replaceClass(btn_add_cart, "btn_added_cart", "btn_yes_stock");
+        //btn_add_cart.style.backgroundColor = "#085801";
         btn_add_cart.value = data.message;
-        btn_add_cart.style.cursor = "auto";
+        //btn_add_cart.style.cursor = "auto";
+        is_size_selected = false;
         btn_add_cart.removeEventListener("click", addCart);
     }).catch(error => {
         console.error("Error en la respuesta: ", error);

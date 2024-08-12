@@ -1,14 +1,14 @@
 //route es la ruta despues del localhost
 //conf es la especificacion en json de la request
 
-const port = 3000;
-const baseRoute = `http://localhost:${port}`;
+const PORT = 3000;
+const BASE_ROUTE = `http://localhost:${PORT}`;
 let route;
 let conf;
 
 function sendReq(route, conf) {
     return new Promise((resolve, reject) => {
-        fetch(baseRoute + route, conf).then(response => {
+        fetch(BASE_ROUTE + route, conf).then(response => {
             if (!response.ok) {
                 throw new Error("network response was not ok");
             }

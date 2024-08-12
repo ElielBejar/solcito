@@ -23,7 +23,6 @@ export class cartController{
             res.status(200).json({message:"Ya está en el carrito"});
         }else{
         req.session.cart.push(req.body);
-        console.log(req.session.cart);
         res.status(200).json({message:"Agregado al carrito"});
         }
     }
@@ -34,6 +33,6 @@ export class cartController{
 
     static async deleteProduct(req, res){
         req.session.cart.splice(req.params.index, 1);
-        res.json(req.session.cart);
+        res.json({cart:req.session.cart});
     }
 }

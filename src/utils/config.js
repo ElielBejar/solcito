@@ -8,5 +8,7 @@ export const PASSWORD = process.env.PASSWORD;
 export const EMAIL = process.env.EMAIL;
 export const PASSWORD_EMAIL = process.env.PASSWORD_EMAIL;
 export const PAGE_SIZE = process.env.PAGE_SIZE;
+export const MIN_AMOUNT = process.env.MIN_AMOUNT
 
 export const MERCADOPAGO_API_KEY = process.env.MERCADOPAGO_API_KEY; 
+export const MERCADOPAGO_PUBLIC_KEY = process.env.MERCADOPAGO_PUBLIC_KEY;

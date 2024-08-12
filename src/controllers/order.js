@@ -8,7 +8,10 @@ export class orderController{
     }
     
     static async addOrder(req, res){
+        console.log("pasa por add order del controller");
+        console.log(req.session.cart.length);
         for(let i = 0; i<req.session.cart.length; i++){
+            console.log(i);
             await orderModel.insertArticle(req.session.cart[i], req.body.quantities[i], req.body.id_order);
         }
         res.json({message:"Se agrego el pedido"});
