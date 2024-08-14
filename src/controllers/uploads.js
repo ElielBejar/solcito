@@ -1,23 +1,34 @@
-import {renameSync, unlinkSync} from "node:fs";
+import {rename, unlink} from "node:fs";
 import {basename} from "node:path";
 
 function saveImg(type, file){
+    console.log("pasa por aca");
     const newPath = `./src/public/uploads/${type}/${file.originalname}`;
-    renameSync(file.path, newPath);
-    return newPath;
+    try{
+    rename(file.path, newPath, (err)=>{
+      if (err) {
+        console.error('Error renaming file:', err);
+        return;
+      }
+    });
+    console.log('File renamed successfully');
+    }catch(err){
+      console.error('Error renaming file:', err);
+    }
 }
 
 export class UploadsController{
 
     static async uploadImg(req, res){
+       console.log("pasa por aca");
        saveImg(req.params.type, req.file);
-       res.send("imagen agregada con exito");
+       res.json("imagen agregada con exito");
     }
 
     static async deleteImg(req, res){
         let realPath = `./src/public/uploads/${req.params.type}/${req.params.imgName}`;
         try {
-            unlinkSync(realPath);
+            unlink(realPath);
             res.json("imagen borrada con éxito");
           } catch (err) {
             console.log(err);

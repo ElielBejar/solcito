@@ -50,28 +50,32 @@ function infoForm() {
 }
 
 //evento del boton para mandar un post y agregar una nueva coleccion
-button_create.addEventListener("click", function () {
-    location.reload();
-    sendReq("/collections/", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(infoForm())
-    }).then(data => {
+button_create.addEventListener("click", async function () {
+    try {
+        // Enviar la primera solicitud
+        await sendReq("/collections/", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(infoForm())
+        });
 
+        // Preparar el FormData y enviar la segunda solicitud
         const formData = new FormData();
         formData.append('img', input_new_img.files[0]);
 
-        sendReq("/uploads/collections", {
+        await sendReq("/uploads/collections", {
             method: 'POST',
             body: formData
-        })
-            .then(response => {
-            })
-            .catch(error => {
-                console.log(error);
-            });
-    });
+        });
+
+        // Recargar la página después de que ambas solicitudes se completen
+        console.log("pasa por el reload");
+        location.reload();
+    } catch (error) {
+        console.error('Error:', error);
+    }
 });
+
 
 //muestra en la tabla los datos
 function showCollections(data) {

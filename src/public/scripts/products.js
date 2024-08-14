@@ -29,30 +29,35 @@ function infoForm() {
    };
 }
 
-button_create.addEventListener("click", function () {
+button_create.addEventListener("click", async function () {
+   try {
+       // Enviar la solicitud para crear un producto
+       console.log('Sending product request...');
+       const productData = await sendReq("/products/", {
+           method: "POST",
+           headers: { "Content-Type": "application/json" },
+           body: JSON.stringify(infoForm())
+       });
 
-   sendReq("/products/", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(infoForm())
-   }).then(data => {
-      console.log(data);
-   });
+       console.log('Product request complete:', productData);
 
-   const formData = new FormData();
-   formData.append('img', input_img.files[0]);
+       // Preparar el FormData para la subida de imagen
+       console.log('Preparing image upload...');
+       const formData = new FormData();
+       formData.append('img', input_img.files[0]);
 
-   sendReq("/uploads/products", {
-      method: 'POST',
-      body: formData
-   })
-      .then(response => {
-         // Manejar la respuesta del servidor
-      })
-      .catch(error => {
-         // Manejar errores
-      });
-   location.reload();
+       // Enviar la solicitud para subir la imagen
+       await sendReq("/uploads/products", {
+           method: 'POST',
+           body: formData
+       });
+
+       console.log('Image upload complete. Reloading page...');
+       // Recargar la página después de que ambas solicitudes se completen
+       location.reload();
+   } catch (error) {
+       console.error('Error:', error);
+   }
 });
 
 //te devuelve el texto de la categoría según el grupo de un articulo
