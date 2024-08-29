@@ -2,7 +2,6 @@ import {rename, unlink} from "node:fs";
 import {basename} from "node:path";
 
 function saveImg(type, file){
-    console.log("pasa por aca");
     const newPath = `./src/public/uploads/${type}/${file.originalname}`;
     try{
     rename(file.path, newPath, (err)=>{
@@ -20,7 +19,6 @@ function saveImg(type, file){
 export class UploadsController{
 
     static async uploadImg(req, res){
-       console.log("pasa por aca");
        saveImg(req.params.type, req.file);
        res.json("imagen agregada con exito");
     }

@@ -2,7 +2,13 @@ import {z} from "zod";
 
 
 export function validateCollection(object){
-    return esquema_collection.safeParse(object);
+    const new_object = {
+        code:parseInt(object.code),
+        name:object.name,
+        img:object.img
+    }
+
+    return esquema_collection.safeParse(new_object);
 }
 
 export function validateStock(object){
@@ -44,9 +50,9 @@ export function validateProduct(object){
 }
 
 const esquema_collection = z.object({
-    code:z.string(),
+    code:z.number(),
     name:z.string(),
-    img:z.string()
+    img:z.string().optional()
 });
 
 const esquema_product = z.object({

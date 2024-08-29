@@ -161,13 +161,20 @@ header nav .options ul li a:hover{
         width: 100%;
     }
     
+    header nav{
+        display:block;
+        width:100%;
+    }
+    
     header nav .search_container{
+        display:block;
+        margin:auto;
         width:80%;
     }
 
     header nav .search_container .search{
         margin:auto;
-        width:60%;
+        width:100%;
     }
 
     header nav .search_container .search .results{

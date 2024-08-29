@@ -2,7 +2,7 @@
 //conf es la especificacion en json de la request
 
 const PORT = 3000;
-const BASE_ROUTE = `http://localhost:${PORT}`;
+const BASE_ROUTE = `http://localhost:${PORT}`//https://www.solcitoweb.com.ar`;
 let route;
 let conf;
 

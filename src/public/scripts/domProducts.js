@@ -30,9 +30,6 @@ function showProducts(data) {
    price.classList.add("price");
    price.textContent = `$${data[i].price}`;
 
-
-
-   products_container.appendChild(product);
    product.appendChild(link_product);
    link_product.appendChild(img_product);
    img_product.appendChild(img);
@@ -40,5 +37,9 @@ function showProducts(data) {
    link_product.appendChild(info_product);
    info_product.appendChild(name);
    info_product.appendChild(price);
+
+   products_container.appendChild(product);
+   
+   setTimeout(() => product.classList.add("product_opacity"),500);
    }
 }

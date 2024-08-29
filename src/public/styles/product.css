@@ -122,11 +122,11 @@
 }
 
 aside .other_products{
-    padding:2em;
+    padding:2em 0;
 }
 
 aside .other_products h2{
-    padding:1em 0;
+    padding:1em 0.2em;
     color: var(--guardsman-red-950);
 }
 

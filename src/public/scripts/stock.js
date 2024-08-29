@@ -30,12 +30,16 @@ function infoForm(size_param, quantity_param){
 }
 
 button_send.addEventListener("click", function(){
+    try{
     sendReq("/stock/", {
          method:"POST",
          headers:{"Content-Type":"application/json"},
          body:JSON.stringify(infoForm(input_form_size.value, input_form_quantity.value))
     });
     location.reload();
+    }catch(e){
+        console.log(e);
+    }
 });
 
 function getInfo(code, print){
@@ -93,11 +97,15 @@ function showStock(data){
        button_update.value = "Guardar";
        button_update.type = "button";
        button_update.addEventListener("click", function(){
+          try{
            sendReq(`/stock/${data[i].id}`, {
                method:"PATCH",
                headers:{"Content-type":"application/json"},
                body:JSON.stringify(infoForm(data[i].size, input_quantity.value))
            });
+          }catch(e){
+            console.error(e);
+          }
        });
 
        td_delete.appendChild(button_delete);

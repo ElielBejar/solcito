@@ -25,10 +25,15 @@ main{
     margin:1em 0;   
 }
 
-.info_container{
+.info_contact{
     flex-basis: 80%;
     display: flex;
     flex-wrap: wrap;
+}
+
+.info_contact label, .info_contact input{
+    flex-basis:100%;
+    padding:0.3em;
 }
 
 .product_on_list .img_container{
@@ -165,14 +170,18 @@ main{
     }
 
     .img_container{
-        flex-basis:40%;
+        flex-basis:30%;
     }
 
     .cart_container h1{
         margin-left:1em;
     }
-
+    
     .info_container{
+       flex-basis:70%;  
+    }
+
+    .info_contact{
         flex-basis:70%;
     }
      
@@ -186,6 +195,6 @@ main{
         flex-basis: 100%;
     }
     .product_tools{
-        flex-basis: 100%;
+        width:100%;
     }
 }

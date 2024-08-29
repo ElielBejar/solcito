@@ -51,6 +51,7 @@
 }
 
 .about .business_article{
+    border-top: solid var(--guardsman-red-200) 0.01em;
     margin:auto;
     width:90%;
     padding:1em;
@@ -68,6 +69,9 @@
 
 .about .business_article p{
     color:var(--guardsman-red-950);
+    margin-top:1em;
+    font-size: 1.5em;
+    padding:0.5em 0;
 }
 
 @media only screen and (max-width:750px){

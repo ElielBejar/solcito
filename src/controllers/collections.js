@@ -11,11 +11,9 @@ export class CollectionsController{
     static async createCollection(req, res){
         const valid_collection = validateCollection(req.body);
         if(valid_collection.error){
-            console.log(valid_collection.error);
             return res.status(400).json({error:res.error});
         }else{
             const new_collection = valid_collection.data;
-            console.log(new_collection);
             CollectionsModel.createCollection(new_collection);
             res.json(new_collection);
         }

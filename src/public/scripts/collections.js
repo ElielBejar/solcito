@@ -42,10 +42,18 @@ button_login.addEventListener("click", function () {
 });
 
 function infoForm() {
+    
+    let new_image;
+    if (input_new_img.files[0] == undefined) {
+        new_image = 'noimage';
+    } else {
+        new_image = input_new_img.files[0].name;
+    }
+
     return {
         code: input_new_code.value,
         name: input_new_name.value,
-        img: `../uploads/collections/${input_new_img.files[0].name}`
+        img: `../uploads/collections/${new_image}`
     }
 }
 
@@ -60,19 +68,19 @@ button_create.addEventListener("click", async function () {
         });
 
         // Preparar el FormData y enviar la segunda solicitud
-        const formData = new FormData();
-        formData.append('img', input_new_img.files[0]);
-
-        await sendReq("/uploads/collections", {
-            method: 'POST',
-            body: formData
-        });
+        if (input_new_img.files[0] != undefined) {
+            const formData = new FormData();
+            formData.append('img', input_new_img.files[0]);
+            await sendReq("/uploads/collections", {
+                method: 'POST',
+                body: formData
+            });
+        }
 
         // Recargar la página después de que ambas solicitudes se completen
-        console.log("pasa por el reload");
         location.reload();
     } catch (error) {
-        console.error('Error:', error);
+        alert(`El codigo de coleccion debe ser un numero`);
     }
 });
 

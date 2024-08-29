@@ -18,11 +18,19 @@ sendReq("/admin/session", {
 });
 
 function infoForm() {
+
+   let new_image;
+    if (input_img.files[0] == undefined) {
+        new_image = 'noimage';
+    } else {
+        new_image = input_img.files[0].name;
+    }
+
    return {
       code: input_code.value,
       name: input_name.value,
       print: input_print.value,
-      img: `../uploads/products/${input_img.files[0].name}`,
+      img: `../uploads/products/${new_image}`,
       price: input_price.value,
       group: input_group.value,
       collection: collection_code
@@ -32,17 +40,14 @@ function infoForm() {
 button_create.addEventListener("click", async function () {
    try {
        // Enviar la solicitud para crear un producto
-       console.log('Sending product request...');
        const productData = await sendReq("/products/", {
            method: "POST",
            headers: { "Content-Type": "application/json" },
            body: JSON.stringify(infoForm())
        });
 
-       console.log('Product request complete:', productData);
-
        // Preparar el FormData para la subida de imagen
-       console.log('Preparing image upload...');
+       if(input_img.files[0] != undefined){
        const formData = new FormData();
        formData.append('img', input_img.files[0]);
 
@@ -51,8 +56,7 @@ button_create.addEventListener("click", async function () {
            method: 'POST',
            body: formData
        });
-
-       console.log('Image upload complete. Reloading page...');
+      }
        // Recargar la página después de que ambas solicitudes se completen
        location.reload();
    } catch (error) {
