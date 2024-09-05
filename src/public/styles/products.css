@@ -43,6 +43,10 @@
     padding:1em;
 }
 
+.product .info_product p{
+    font-weight: bold;
+}
+
 .product .info_product span{
     padding:0.5em 0;
     display:block;

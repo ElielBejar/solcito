@@ -1,9 +1,9 @@
 const button_buy = document.getElementById("button_buy");
 
 let mp;
+let access_token_sp;//access token de si pago
 
 async function getPublicKey() {
-    console.log("PASA POR PUBLIC KEY");
     const response = await fetch(`${BASE_ROUTE}/payment/`, {
         method: "GET",
         headers: { "Content-Type": "application/json" },
@@ -16,7 +16,9 @@ async function getPublicKey() {
     });
 }
 
-getPublicKey();
+//getPublicKey();
+getAccessTokenSiPago();
+
 
 button_buy.addEventListener("click", function () {
     checkout();
@@ -38,6 +40,16 @@ function infoCheckout() {
         quantities: quantities,
         //shipping:shipping
 
+    };
+}
+
+function infoCheckoutSP() {
+    const inputs_quantities = document.querySelectorAll(".input_quantity");
+    const quantities = Array.from(inputs_quantities).map(function (input) { return input.value });
+
+    return {
+        quantities: quantities,
+        access_token:access_token_sp
     };
 }
 
@@ -67,39 +79,7 @@ async function checkout() {
     } else {
         try {
             if (requeiredShippingFields() == 0) {
-                const response = await fetch(`${BASE_ROUTE}/payment`, {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify(infoCheckout()),
-                });
-                const shipping_response = await fetch(`${BASE_ROUTE}/order/shipping`, {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify(infoShippingForm()),
-                });
-                const res_id = await shipping_response.json();
-                const response_order = await fetch(`${BASE_ROUTE}/order/order`, {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify(infoOrder(res_id.order_id)),
-                });
-                const res_order = await response_order.json();
-                const preference = await response.json();
-
-                mp.bricks().create("wallet", "wallet_container", {
-                    initialization: {
-                        preferenceId: preference.id,
-                    },
-                });
-
-                sendEmail(null, "Nuevo Pedido!", "");
-                window.location.href = preference.init_point;
+                generateTryPaymentSP();
             }
         } catch (error) {
             console.log(error);
@@ -122,3 +102,108 @@ const createCheckoutButton = (preference_id) => {
 
     renderComponent();
 };
+
+//manda el fetch a la api de sipago para tener el acces token
+
+function getAccessTokenSiPago(){
+
+    fetch(`${BASE_ROUTE}/payment/sipago/credentials`, {
+        method: "GET",
+        headers: { "Content-Type": "application/json",
+    }}).then(response => response.json())
+       .then(credentials => {
+        const url = 'https://auth.preprod.geopagos.com/oauth/token';//development
+        const data = {
+          grant_type: "client_credentials",
+          client_id: `${credentials.client_id}`,
+          client_secret: `${credentials.client_secret}`,
+          scope: "*"
+        };
+        
+        fetch(url, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(data => {
+          access_token_sp = data.access_token;
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
+       });
+}
+
+
+async function createOrder(){
+    const shipping_response = await fetch(`${BASE_ROUTE}/order/shipping`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(infoShippingForm()),
+    });
+    const res_id = await shipping_response.json();
+    const response_order = await fetch(`${BASE_ROUTE}/order/order`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(infoOrder(res_id.order_id)),
+    });
+    const res_order = await response_order.json();
+}
+
+async function generateTryPaymentMP(){
+    const response = await fetch(`${BASE_ROUTE}/payment`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(infoCheckout()),
+    });
+    const shipping_response = await fetch(`${BASE_ROUTE}/order/shipping`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(infoShippingForm()),
+    });
+    const res_id = await shipping_response.json();
+    const response_order = await fetch(`${BASE_ROUTE}/order/order`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(infoOrder(res_id.order_id)),
+    });
+    const res_order = await response_order.json();
+    const preference = await response.json();
+
+    mp.bricks().create("wallet", "wallet_container", {
+        initialization: {
+            preferenceId: preference.id,
+        },
+    });
+
+    sendEmail(null, "Nuevo Pedido!", "");
+    window.location.href = preference.init_point;
+}
+
+async function generateTryPaymentSP(){
+    await createOrder();
+    fetch(`${BASE_ROUTE}/payment/sipago`, 
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(infoCheckoutSP())
+    }).then(response => response.json())
+      .then(order => {
+        window.location.href = order.data.links[0].checkout
+    });
+}
